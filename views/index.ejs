@@ -1,11 +1,17 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8">
+    <title>Linux Dungeon</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <div class="login">
+      <br>
+      <h1 align="center">Linux Dungeon</h1>
+      <!-- /loginにリダイレクト -->
+      <form action="/login" method="get" autocomplete="off" align="center">
+        <input type="submit" class="button" value="ログイン">
+      </form>
+    </div>
   </body>
 </html>

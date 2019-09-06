@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ログイン</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
+  </head>
+  <body>
+    <div class="login">
+      <br>
+      <h1 align="center">LOGIN</h1>
+      <!-- /にPOSTでリクエスト -->
+      <form action="/" method="post" autocomplete="off">
+        <!-- 枠線なしの表で縦横を揃える -->
+        <table align="center" border="0">
+          <tr>
+            <!-- ユーザ名を入力する1行テキストボックス -->
+            <td><input type="text" class="text_box" name="user" placeholder="ユーザ" maxlength="10" required></td>
+          </tr>
+          <tr>
+            <!-- 入力内容が表示されないパスワード入力ボックス -->
+            <td><input type="password" class="text_box" name="pass" placeholder="パスワード" maxlength="10" required></td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                <!-- 押されるとリクエストが行われる送信ボタン -->
+                <input type="submit" class="button" value="ログイン">
+                <!-- 押されると初期状態に戻るリセットボタン -->
+                <input type="reset" class="button" value="リセット">
+              </div>
+            </td>
+            </tr>
+        </table>
+      </form>
+    </div>
+  </body>
+</html>

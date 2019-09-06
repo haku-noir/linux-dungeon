@@ -2,43 +2,47 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>ログイン</title>
+    <title>新規登録</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
   </head>
   <body>
     <div class="login">
       <br>
-      <h1 align="center">LOGIN</h1>
-      <!-- /にPOSTでリクエスト -->
-      <form action="/" method="post" autocomplete="off">
+      <h1 align="center">REGISTRATION</h1>
+      <!-- /login/registrationにPOSTでリクエスト -->
+      <form action="/login/registration" method="post" autocomplete="off">
         <!-- 枠線なしの表で縦横を揃える -->
         <table align="center" border="0">
           <tr>
             <!-- ユーザ名を入力する1行テキストボックス -->
-            <td><input type="text" class="text_box" name="user" placeholder="ユーザ" maxlength="10" required></td>
+            <td><input type="text" class="text_box" name="user" placeholder="新規ユーザ" maxlength="10" required></td>
           </tr>
           <tr>
             <!-- 入力内容が表示されないパスワード入力ボックス -->
-            <td><input type="password" class="text_box" name="pass" placeholder="パスワード" maxlength="10" required></td>
+            <td><input type="password" class="text_box" name="pass" placeholder="新規パスワード" maxlength="10" required></td>
+          </tr>
+          <tr>
+            <!-- 入力内容が表示されないパスワード入力ボックス（確認用） -->
+            <td><input type="password" class="text_box" name="pass_re" placeholder="新規パスワード（確認）" maxlength="10" required></td>
           </tr>
           <tr>
             <td>
               <div class="buttons">
                 <!-- 下にある#newのformの送信ボタン -->
-                <input type="submit" class="button" value="新規登録" form="registration">
+                <input type="submit" class="button" value="戻る" form="return">
                 <div>
                   <!-- 押されるとリクエストが行われる送信ボタン -->
-                  <input type="submit" class="button" value="ログイン">
+                  <input type="submit" class="button" value="登録">
                   <!-- 押されると初期状態に戻るリセットボタン -->
                   <input type="reset" class="button" value="リセット">
                 </div>
               </div>
             </td>
-            </tr>
+          </tr>
         </table>
       </form>
-      <!-- /login/registrationにリダイレクト -->
-      <form action="/login/registration" method="get" id="registration"></form>
+      <!-- /loginにリダイレクト -->
+      <form action="/login" method="post" id="return"></form>
     </div>
   </body>
 </html>

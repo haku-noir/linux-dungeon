@@ -6,7 +6,15 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  res.render('index');
+  user = req.body.user;
+  pass = req.body.pass;
+
+  if(req.body.registration){
+    console.log(`REGISTRATION user: ${user}, pass:${pass}`);
+  }else{
+    console.log(`LOGIN user: ${user}, pass:${pass}`);
+  }
+  res.render('start', {user});
 });
 
 module.exports = router;

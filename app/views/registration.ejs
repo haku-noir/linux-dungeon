@@ -6,11 +6,11 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
   </head>
   <body>
-    <div class="login">
+    <div class="root">
       <br>
       <h1 align="center">REGISTRATION</h1>
-      <!-- /login/registrationにリクエスト -->
-      <form action="/login/registration" method="post" autocomplete="off">
+      <!-- /にリクエスト -->
+      <form action="/" method="post" autocomplete="off">
         <!-- 枠線なしの表で縦横を揃える -->
         <table align="center" border="0">
           <tr>
@@ -33,13 +33,13 @@
                 <div>
                   <!-- 押されるとリクエストが行われる送信ボタン -->
                   <input type="submit" class="button" value="登録">
-                  <!-- 押されると初期状態に戻るリセットボタン -->
-                  <input type="reset" class="button" value="リセット">
                 </div>
               </div>
             </td>
           </tr>
         </table>
+        <!-- ユーザ登録であることを伝える -->
+        <input type="hidden" name="registration" value="true">
       </form>
       <!-- /loginにリダイレクト -->
       <form action="/login" method="get" id="return"></form>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Linux Dungeon</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
+  </head>
+  <body>
+    <div class="login">
+      <br>
+      <h1 align="center">QUESTION PAGE</h1>
+      <!-- /dungeon/room/answerにリクエスト -->
+      <form action="/dungeon/room/answer" method="post" autocomplete="off">
+        <!-- 枠線なしの表で縦横を揃える -->
+        <table align="center" border="0">
+          <tr>
+            <!-- 解答を入力する1行テキストボックス -->
+            <td><input type="text" class="text_box" name="ans" placeholder="解答" required></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="buttons">
+                <!-- 下にある#returnのformの送信ボタン -->
+                <input type="submit" class="button" value="部屋を出る" form="return">
+                <div>
+                  <!-- 押されるとリクエストが行われる送信ボタン -->
+                  <input type="submit" class="button" value="解答">
+                  <!-- 押されると初期状態に戻るリセットボタン -->
+                  <input type="reset" class="button" value="リセット">
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- /dungeonにリクエスト -->
+      <form action="/dungeon" method="post" id="return" autocomplete="off" align="center">
+    </div>
+  </body>
+</html>

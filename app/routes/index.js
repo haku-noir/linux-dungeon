@@ -29,22 +29,21 @@ router.post('/', function(req, res, next) {
 
     if (req.body.registration) {
         try {
-            db.query("INSERT INTO user_pass (user,pass) values( ? , ? );", [user, pass], (error, result) => {
-                console.log(result);　
+            db.query("INSERT INTO user_pass (user,pass) VALUES( ? , ? );", [user, pass], (error, result) => {
+                console.log(result || error);　
                 res.render('start', { user });
             })
         } catch (e) {
             res.send('登録失敗');
         }
     } else {
-        console.log(`LOGIN user: ${user}, pass:${pass}`);
         try {
-            db.query("SELECT FROM user_pass where user=? AND pass=?;", [user, pass], (error, result) => {
+            db.query("SELECT user, pass FROM user_pass where user LIKE ? AND pass LIKE ?;", [user, pass], (error, result) => {
                 if (error) {
                     console.log(error);
                 }
                 console.log(result);　
-                if (result[0]['user']) {
+                if (result['user']) {
                     res.render('start', { user });
                 }
             })

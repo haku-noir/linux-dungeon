@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Linux Dungeon</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="root">
-      <br>
-      <h1 align="center">LOGIN</h1>
-      <!-- /にリクエスト -->
-      <form action="/" method="post" autocomplete="off">
-        <!-- 枠線なしの表で縦横を揃える -->
-        <table align="center" border="0">
-          <tr>
-            <!-- ユーザ名を入力する1行テキストボックス -->
-            <td><input type="text" class="text_box" name="user" placeholder="ユーザ" maxlength="10" required></td>
-          </tr>
-          <tr>
-            <!-- 入力内容が表示されないパスワード入力ボックス -->
-            <td><input type="password" class="text_box" name="pass" placeholder="パスワード" maxlength="10" required></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="buttons">
-                <!-- 下にある#registrationのformの送信ボタン -->
-                <input type="submit" class="button" value="ユーザ登録" form="registration">
-                <div>
-                  <!-- 押されるとリクエストが行われる送信ボタン -->
-                  <input type="submit" class="button" value="ログイン">
-                </div>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </form>
-      <!-- /login/registrationにリダイレクト -->
-      <form action="/login/registration" method="get" id="registration"></form>
+        <br>
+        <h1 align="center">LOGIN</h1>
+        <!-- /にリクエスト -->
+        <form action="/" method="post" autocomplete="off">
+            <!-- 枠線なしの表で縦横を揃える -->
+            <table align="center" border="0">
+                <tr>
+                    <!-- ユーザ名を入力する1行テキストボックス -->
+                    <td><input type="text" class="text_box" name="user" placeholder="ユーザ" maxlength="10" required></td>
+                </tr>
+                <tr>
+                    <!-- 入力内容が表示されないパスワード入力ボックス -->
+                    <td><input type="password" class="text_box" name="pass" placeholder="パスワード" maxlength="10" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="buttons">
+                            <!-- 下にある#registrationのformの送信ボタン -->
+                            <input type="submit" class="button" value="ユーザ登録" form="registration">
+                            <div>
+                                <!-- 押されるとリクエストが行われる送信ボタン -->
+                                <input type="submit" class="button" value="ログイン">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <!-- /login/registrationにリダイレクト -->
+        <form action="/login/registration" method="get" id="registration"></form>
     </div>
-  </body>
+</body>
+
 </html>

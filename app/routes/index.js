@@ -15,7 +15,7 @@ router.post('/', function(req, res, next) {
         host: process.env.DATABASE_HOST || 'localhost',
         user: 'root',
         password: 'password',
-        database: 'userdata'
+        database: 'linuxdungeon'
     });
 
     db.connect(error => {
@@ -28,12 +28,12 @@ router.post('/', function(req, res, next) {
 
 
     if (req.body.registration) {
-        db.query("INSERT INTO user_pass (user,pass) VALUES( ? , ? );", [user, pass], (error, result) => {
+        db.query("INSERT INTO users_datas (user,pass) VALUES( ? , ? );", [user, pass], (error, result) => {
             console.log(result);　
             res.render('start', { user });
         })
     } else {
-        db.query("SELECT user, pass FROM user_pass where user = ? AND pass = ?;", [user, pass], (error, result) => {
+        db.query("SELECT user, pass FROM users_datas where user = ? AND pass = ?;", [user, pass], (error, result) => {
             console.log(result);　
             if (result[0]) {
                 console.log('ログイン成功!!')

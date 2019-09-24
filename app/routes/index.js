@@ -28,31 +28,24 @@ router.post('/', function(req, res, next) {
 
 
     if (req.body.registration) {
-        try {
-            db.query("INSERT INTO user_pass (user,pass) VALUES( ? , ? );", [user, pass], (error, result) => {
-                console.log(result || error);　
-                res.render('start', { user });
-            })
-        } catch (e) {
-            res.send('登録失敗');
-        }
+        db.query("INSERT INTO user_pass (user,pass) VALUES( ? , ? );", [user, pass], (error, result) => {
+            console.log(result);　
+            res.render('start', { user });
+        })
     } else {
-        try {
-            db.query("SELECT user, pass FROM user_pass where user LIKE ? AND pass LIKE ?;", [user, pass], (error, result) => {
-                if (error) {
-                    console.log(error);
-                }
-                console.log(result);　
-                if (result['user']) {
-                    res.render('start', { user });
-                }
-            })
-        } catch (e) {
-            res.send('ログイン失敗');
-            res.redirect('login');
-        }
+        db.query("SELECT user, pass FROM user_pass where user = ? AND pass = ?;", [user, pass], (error, result) => {
+            console.log(result);　
+            if (result[0]) {
+                console.log('ログイン成功!!')
+                console.log('成功したユーザ名 :' + user + '成功したパスワード :' + pass)
+                res.render('start', { user });
+            } else {
+                res.redirect('login');
+                console.log('ログイン失敗、、');
+                console.log('失敗したユーザ名 :' + user + '失敗したパスワード :' + pass)
+            }
+        })
     }
-    res.render('start', { user });
 });
 
 module.exports = router;

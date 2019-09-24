@@ -3,9 +3,9 @@
     <meta charset="utf-8">
     <title>Linux Dungeon</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/dungeon.css">
-    <script type="text/javascript" src="/script/dungeon.js"></script>
+    <script type="text/javascript" src="/scripts/dungeon.js"></script>
   </head>
-  <body>
+  <body onload="init()">
     <div class="root">
       <br>
       <h1 align="center">Dungeon Page</h1>
@@ -17,7 +17,8 @@
       <form action="/dungeon/room" method="post" autocomplete="off" align="center">
         <input type="submit" class="button" value="部屋に入る">
       </form>
-      <canvas id="soko" width="800" height="440"></canvas>
+      <canvas id="floor" width="1000" height="500"></canvas>
+      <img id="imgWall" src="/images/imgWall.png" style="display:none" />
     </div>
   </body>
 </html>

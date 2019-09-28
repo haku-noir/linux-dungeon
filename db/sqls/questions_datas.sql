@@ -8,3 +8,10 @@ CREATE TABLE questions_datas(
 );
 
 INSERT INTO questions_datas (path, ans, que) values('/test', 'test', 'test');
+
+LOAD DATA LOCAL INFILE "/db/questions_datas.csv"
+    INTO TABLE questions_datas
+    FIELDS TERMINATED BY ',' ENCLOSED BY '"'
+    LINES TERMINATED BY '\r\n'
+    IGNORE 1 LINES
+    (path, ans, que);

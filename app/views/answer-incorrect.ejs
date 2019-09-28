@@ -7,11 +7,11 @@
   <body>
     <div class="root">
       <br>
-      <h1 align="center">Answer Page</h1>
       <h1 align="center">不正解</h1>
-      <!-- /dungeonにリクエスト -->
-      <form action="/dungeon" method="post" autocomplete="off" align="center">
+      <!-- /dungeon/roomにリクエスト -->
+      <form action="/dungeon/room" method="post" align="center">
         <input type="submit" class="button" value="問題に戻る">
+        <input type="hidden" name="did" value=<%= did %>>
       </form>
     </div>
   </body>

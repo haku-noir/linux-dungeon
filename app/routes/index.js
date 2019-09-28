@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const mysql = require('mysql');
-const bodyParser = require('body-parser');
+var db = require('../my_modules/db');
 
 router.get('/', function(req, res, next) {
     res.render('index');
@@ -10,22 +9,6 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     user = req.body.user;
     pass = req.body.pass;
-
-    const db = mysql.createConnection({
-        host: process.env.DATABASE_HOST || 'localhost',
-        user: 'root',
-        password: 'password',
-        database: 'linuxdungeon'
-    });
-
-    db.connect(error => {
-        if (error) {
-            console.error('error connecting: ' + error.stack);
-            return;
-        }
-        console.log('connected as id ' + db.threadId);
-    });
-
 
     if (req.body.registration) {
         db.query("INSERT INTO users_datas (user,pass) VALUES( ? , ? );", [user, pass], (error, result) => {

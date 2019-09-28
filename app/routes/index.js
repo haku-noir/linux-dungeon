@@ -7,8 +7,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    user = req.body.user;
-    pass = req.body.pass;
+    const user = req.body.user;
+    const pass = req.body.pass;
 
     if (req.body.registration) {
         db.query("INSERT INTO users_datas (user,pass) VALUES( ? , ? );", [user, pass], (error, result) => {

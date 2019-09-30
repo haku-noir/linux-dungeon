@@ -8,7 +8,9 @@
   <body>
     <div class="root">
       <br>
-      <h1 align="center">QUESTION PAGE</h1>
+      <h1 align="center">QUESTION</h1>
+      <p align="center"><%= path %></p>
+      <p align="center"><%= que %></p>
       <!-- /dungeon/room/answerにリクエスト -->
       <form action="/dungeon/room/answer" method="post" autocomplete="off">
         <!-- 枠線なしの表で縦横を揃える -->
@@ -30,6 +32,7 @@
             </td>
           </tr>
         </table>
+        <input type="hidden" name="did" value=<%= did %>>
       </form>
       <!-- /dungeonにリクエスト -->
       <form action="/dungeon" method="post" id="return" autocomplete="off" align="center">

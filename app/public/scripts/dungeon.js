@@ -26,29 +26,25 @@ function left(){ mykeydown({keyCode:37}); }
 function right(){ mykeydown({keyCode:39}); }
 
 function mykeydown(a) {
-    var dx0 = px, dx1 = px, dy0 = py, dy1 = py;
+    var dx = px, dy = py;
     switch (a.keyCode) {
-        case 37: dx0--; dx1-=2;
+        case 37: dx--;
             break;
-        case 38: dy0--; dy1-=2;
+        case 38: dy--;
             break;
-        case 39: dx0++; dx1+=2;
+        case 39: dx++;
             break;
-        case 40: dy0++; dy1+=2;
+        case 40: dy++;
             break;
     }
 
-    if ((data[dy0][dx0] & 0x2) == 0) { 
-        px = dx0;
-        py = dy0;
-    } else if ((data[dy0][dx0] & 0x6) == 2) { 
-        if ((data[dy1][dx1] & 0x2) == 0) {               
-            data[dy0][dx0] ^= 2;    
-            data[dy1][dx1] |= 2;    
-            px = dx0;
-            py = dy0;
-        }
-}
+    if (data[dy][dx] == 0) { 
+        px = dx;
+        py = dy;
+    } else if (data[dy][dx] == 1) {
+        px = dx;
+        py = dy;
+    }
     repaint();
 }
 
@@ -68,7 +64,3 @@ function repaint() {
     }
     gc.drawImage(yuusya,px * 50, py * 50, 50, 50);
 }
-
-
-
-

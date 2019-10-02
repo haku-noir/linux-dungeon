@@ -42,10 +42,28 @@ function mykeydown(a) {
         px = dx;
         py = dy;
     } else if (data[dy][dx] == 1) {
+        request(1, dx, dy);
         px = dx;
         py = dy;
     }
     repaint();
+}
+
+function request(f, x, y){
+    var form = document.createElement('form');
+    var req = document.createElement('input');
+
+    form.method = 'post';
+    form.action = '/dungeon/room';
+
+    req.type = 'hidden'; //入力フォームが表示されないように
+    req.name = 'did';
+    req.value = '010101';
+
+    form.appendChild(req);
+    document.body.appendChild(form);
+
+    form.submit();
 }
 
 function repaint() {

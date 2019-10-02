@@ -3,8 +3,9 @@
     <meta charset="utf-8">
     <title>Linux Dungeon</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/dungeon.css">
+    <script type="text/javascript" src="/scripts/dungeon.js"></script>
   </head>
-  <body>
+  <body onload="init()">
     <div class="root">
       <br>
       <h1 align="center">Dungeon Page</h1>
@@ -17,6 +18,17 @@
         <input type="submit" class="button" value="部屋に入る">
         <input type="hidden" name="did" value="010101">
       </form>
+      <canvas id="floor" width="1000" height="500"></canvas>
+      <img id="kabe" src="/images/kabe.png" style="display:none" />
+      <img id="monn" src="/images/monn.png" style="display:none" /> 
+      <img id="yuusya" src="/images/yuusya.png" style="display:none" />
+      <table style="display:none">
+        <tr><td></td><td><button onclick="up()">U</button></td><td></td></tr>
+        <tr><td><button onclick="left()">L</button></td><td></td>
+            <td><button onclick="right()">R</button></td></tr>
+        <tr><td></td><td><button onclick="down()">D</button></td><td></td></tr>
+    </table>
+      
     </div>
   </body>
 </html>

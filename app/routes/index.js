@@ -28,9 +28,16 @@ router.post('/', function(req, res, next) {
 
 
     if (req.body.registration) {
-        db.query("INSERT INTO users_datas (user,pass) VALUES( ? , ? );", [user, pass], (error, result) => {
-            console.log(result);　
-            res.render('start', { user });
+        db.query("SELECT user FROM users_datas where user=?; ", [user], (error, result) => {
+            if (result[0]) {
+                res.redirect('login/registration');
+                console.log('ユーザは既に存在します。存在するユーザ' + user);
+            } else {
+                db.query("INSERT INTO users_datas (user,pass) VALUES( ? , ? );", [user, pass], (error, result) => {
+                    console.log(result);　
+                    res.render('start', { user });
+                })
+            }
         })
     } else {
         db.query("SELECT user, pass FROM users_datas where user = ? AND pass = ?;", [user, pass], (error, result) => {

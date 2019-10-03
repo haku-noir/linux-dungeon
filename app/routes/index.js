@@ -10,7 +10,9 @@ router.post('/', function(req, res, next) {
     const user = req.body.user;
     const pass = req.body.pass;
 
-    if (req.body.registration) {
+    if (req.body.exit) {
+        res.render('start', { user });
+    } else if (req.body.registration) {
         db.query("SELECT user FROM users_datas where user=?; ", [user], (error, result) => {
             if (result[0]) {
                 res.redirect('login/registration');

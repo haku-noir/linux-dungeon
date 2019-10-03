@@ -8,7 +8,7 @@
     <div class="root">
       <br>
       <h1 align="center">Linux Dungeon</h1>
-      <h2 align="center">ユーザ: <%= user %></h2>
+      <h2 align="center">USER: <%= user %></h2>
       <!-- /loginにリダイレクト -->
       <form action="/login" method="get" autocomplete="off" align="center">
         <input type="submit" class="button" value="ユーザ切り替え">
@@ -16,6 +16,7 @@
       <!-- /dungeonにリクエスト -->
       <form action="/dungeon" method="post" autocomplete="off" align="center">
         <input type="submit" class="button" value="探索開始">
+        <input type="hidden" name="user" value=<%= user %>>
       </form>
     </div>
   </body>

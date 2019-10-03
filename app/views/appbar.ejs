@@ -1,7 +1,9 @@
 <div align="center">
-  <h2>USER: user  SCORE: 0</h2>
+  <h2>USER: <%= user %>  SCORE: 0</h2>
   <!-- /にリクエスト -->
-  <form action="/" method="post" autocomplete="off" align="center">
+  <form action="/" method="post" align="center">
     <input type="submit" class="button" value="脱出">
+    <input type="hidden" name="exit" value="true">
+    <input type="hidden" name="user" value=<%= user %>>
   </form>
 </div>

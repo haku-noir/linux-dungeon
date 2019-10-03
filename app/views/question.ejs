@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="root">
-      <% include ./appbar.ejs %>
+      <% include ./appbar.ejs {user} %>
       <h1 align="center">QUESTION</h1>
       <p align="center"><%= path %></p>
       <p align="center"><%= que %></p>
@@ -27,6 +27,7 @@
                 <div>
                   <!-- 押されるとリクエストが行われる送信ボタン -->
                   <input type="submit" class="button" value="解答">
+                  <input type="hidden" name="user" value=<%= user %>>
                 </div>
               </div>
             </td>
@@ -36,6 +37,8 @@
       </form>
       <!-- /dungeonにリクエスト -->
       <form action="/dungeon" method="post" id="return" autocomplete="off" align="center">
+        <input type="hidden" name="user" value=<%= user %>>
+      </form>
     </div>
   </body>
 </html>

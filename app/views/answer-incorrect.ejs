@@ -6,12 +6,13 @@
   </head>
   <body>
     <div class="root">
-      <% include ./appbar.ejs %>
+      <% include ./appbar.ejs {user} %>
       <h1 align="center">不正解</h1>
       <!-- /dungeon/roomにリクエスト -->
       <form action="/dungeon/room" method="post" align="center">
         <input type="submit" class="button" value="問題に戻る">
         <input type="hidden" name="did" value=<%= did %>>
+        <input type="hidden" name="user" value=<%= user %>>
       </form>
     </div>
   </body>

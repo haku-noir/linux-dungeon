@@ -7,15 +7,16 @@
   </head>
   <body onload="init()">
     <div class="root">
-      <% include ./appbar.ejs %>
+      <% include ./appbar.ejs {user} %>
       <!-- /dungeon/roomにリクエスト -->
       <form action="/dungeon/room" method="post" autocomplete="off" align="center">
         <input type="submit" class="button" value="部屋に入る">
         <input type="hidden" name="did" value="010101">
+        <input type="hidden" name="user" value=<%= user %>>
       </form>
       <canvas id="floor" width="1000" height="500"></canvas>
       <img id="kabe" src="/images/kabe.png" style="display:none" />
-      <img id="monn" src="/images/monn.png" style="display:none" /> 
+      <img id="monn" src="/images/monn.png" style="display:none" />
       <img id="yuusya" src="/images/yuusya.png" style="display:none" />
       <table style="display:none">
         <tr><td></td><td><button onclick="up()">U</button></td><td></td></tr>

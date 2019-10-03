@@ -7,28 +7,18 @@
   </head>
   <body onload="init()">
     <div class="root">
-      <br>
-      <h1 align="center">Dungeon Page</h1>
-      <!-- /にリクエスト -->
-      <form action="/" method="post" autocomplete="off" align="center">
-        <input type="submit" class="button" value="脱出">
-      </form>
-      <!-- /dungeon/roomにリクエスト -->
-      <form action="/dungeon/room" method="post" autocomplete="off" align="center">
-        <input type="submit" class="button" value="部屋に入る">
-        <input type="hidden" name="did" value="010101">
-      </form>
+      <% include ./appbar.ejs {user, score} %>
+      <input type="hidden" name="user" value="<%= user %>" form="room">
       <canvas id="floor" width="1000" height="500"></canvas>
       <img id="kabe" src="/images/kabe.png" style="display:none" />
-      <img id="monn" src="/images/monn.png" style="display:none" /> 
+      <img id="monn" src="/images/monn.png" style="display:none" />
       <img id="yuusya" src="/images/yuusya.png" style="display:none" />
       <table style="display:none">
         <tr><td></td><td><button onclick="up()">U</button></td><td></td></tr>
         <tr><td><button onclick="left()">L</button></td><td></td>
             <td><button onclick="right()">R</button></td></tr>
         <tr><td></td><td><button onclick="down()">D</button></td><td></td></tr>
-    </table>
-      
+      </table>
     </div>
   </body>
 </html>

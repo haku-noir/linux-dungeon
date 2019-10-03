@@ -38,7 +38,7 @@ function mykeydown(a) {
             break;
     }
 
-    if (data[dy][dx] == 0) { 
+    if (data[dy][dx] == 0) {
         px = dx;
         py = dy;
     } else if (data[dy][dx] == 1) {
@@ -51,16 +51,17 @@ function mykeydown(a) {
 
 function request(f, x, y){
     var form = document.createElement('form');
-    var req = document.createElement('input');
+    var did = document.createElement('input');
 
     form.method = 'post';
     form.action = '/dungeon/room';
+    form.id = 'room'
 
-    req.type = 'hidden'; //入力フォームが表示されないように
-    req.name = 'did';
-    req.value = '010101';
+    did.type = 'hidden';
+    did.name = 'did';
+    did.value = '010101';
 
-    form.appendChild(req);
+    form.appendChild(did);
     document.body.appendChild(form);
 
     form.submit();

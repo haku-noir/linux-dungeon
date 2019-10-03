@@ -3,7 +3,7 @@ var router = express.Router();
 var db = require('../my_modules/db');
 
 router.get('/', function(req, res, next) {
-    res.render('index');
+    res.redirect('login');
 });
 
 router.post('/', function(req, res, next) {

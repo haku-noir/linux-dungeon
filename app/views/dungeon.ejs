@@ -7,12 +7,7 @@
   </head>
   <body onload="init()">
     <div class="root">
-      <br>
-      <h1 align="center">Dungeon Page</h1>
-      <!-- /にリクエスト -->
-      <form action="/" method="post" autocomplete="off" align="center">
-        <input type="submit" class="button" value="脱出">
-      </form>
+      <% include ./appbar.ejs %>
       <!-- /dungeon/roomにリクエスト -->
       <form action="/dungeon/room" method="post" autocomplete="off" align="center">
         <input type="submit" class="button" value="部屋に入る">
@@ -27,8 +22,7 @@
         <tr><td><button onclick="left()">L</button></td><td></td>
             <td><button onclick="right()">R</button></td></tr>
         <tr><td></td><td><button onclick="down()">D</button></td><td></td></tr>
-    </table>
-      
+      </table>
     </div>
   </body>
 </html>

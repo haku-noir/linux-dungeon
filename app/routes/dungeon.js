@@ -3,7 +3,12 @@ var router = express.Router();
 var ud = require('../my_modules/userdata');
 
 router.post('/', function(req, res, next) {
-  res.render('dungeon', {user: req.body.user});
+  const user = req.body.user;
+
+  ud.getScore(user)
+    .then((score) => {
+      res.render('dungeon', {user, score});
+    });
 });
 
 module.exports = router;

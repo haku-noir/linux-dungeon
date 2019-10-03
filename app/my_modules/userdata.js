@@ -5,5 +5,10 @@ module.exports = {
     db.query("SELECT uid FROM users_datas where user=?;", user, (err, rows) => {
       return rows[0].uid;
     });
+  },
+  getUser: (uid) => {
+    db.query("SELECT user FROM users_datas where uid=?;", uid, (err, rows) => {
+      return rows[0].user;
+    });
   }
 };

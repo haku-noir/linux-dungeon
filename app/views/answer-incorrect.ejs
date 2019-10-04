@@ -6,7 +6,7 @@
   </head>
   <body>
     <div class="root">
-      <% include ./appbar.ejs {user} %>
+      <% include ./appbar.ejs {user, score} %>
       <h1 align="center">不正解</h1>
       <!-- /dungeon/roomにリクエスト -->
       <form action="/dungeon/room" method="post" align="center">

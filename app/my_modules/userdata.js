@@ -21,5 +21,16 @@ module.exports = {
         resolve(rows[0].score);
       });
     }
+  }),
+  addScore: (req, score) => new Promise((resolve) => {
+    if(typeof req == "string"){
+      db.query("UPDATE users_scores As s, (SELECT d.uid, user FROM users_datas AS d , users_scores AS s where d.uid=s.uid) AS ds set s.score=s.score+? where s.uid=ds.uid AND ds.user=?;", [score, req], (err, rows) => {
+        resolve();
+      });
+    }else{
+      db.query("UPDATE users_scores set score=score+? where uid=?;", [score, req], (err, rows) => {
+        resolve();
+      });
+    }
   })
 };

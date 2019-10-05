@@ -7,7 +7,7 @@ CREATE TABLE users_scores(
 
 CREATE TRIGGER score_trigger
     AFTER INSERT
-    ON users_datas FOR EACH ROW
+    ON users_locations FOR EACH ROW
     INSERT INTO users_scores (score) VALUE (0);
 
 INSERT INTO users_datas (user, pass) values('test', 'test');

@@ -32,5 +32,17 @@ module.exports = {
         resolve();
       });
     }
+  }),
+  getDid: (req) => new Promise((resolve) => {
+    if(typeof req == "string"){
+      db.query("SELECT l.did FROM users_datas AS d, users_locations AS l where d.uid=l.uid AND d.user=?;", req, (err, rows) => {
+        console.log("DID" + rows[0].did)
+        resolve(rows[0].did);
+      });
+    }else{
+      db.query("SELECT did FROM users_locations where uid=?;", req, (err, rows) => {
+        resolve(rows[0].did);
+      });
+    }
   })
 };

@@ -34,7 +34,7 @@ getScore = (req) => new Promise((resolve) => {
 
 addScore = (req, score) => new Promise((resolve) => {
   if(typeof req == "string"){
-    db.query("UPDATE users_scores As s, (SELECT d.uid, user FROM users_datas AS d , users_scores AS s where d.uid=s.uid) AS ds set s.score=s.score+? where s.uid=ds.uid AND ds.user=?;", [score, req], (err, rows) => {
+    db.query("UPDATE users_scores As s, (SELECT d.uid, d.user FROM users_datas AS d , users_scores AS s where d.uid=s.uid) AS ds set s.score=s.score+? where s.uid=ds.uid AND ds.user=?;", [score, req], (err, rows) => {
       resolve();
     });
   }else{
@@ -53,6 +53,18 @@ getDid = (req) => new Promise((resolve) => {
   }else{
     db.query("SELECT did FROM users_locations where uid=?;", req, (err, rows) => {
       resolve(rows[0].did);
+    });
+  }
+});
+
+setDid = (req, did) => new Promise((resolve) => {
+  if(typeof req == "string"){
+    db.query("UPDATE users_locations As l, (SELECT d.uid, d.user FROM users_datas AS d , users_locations AS l where d.uid=l.uid) AS dl set l.did=? where l.uid=dl.uid AND dl.user=?;", [did, req], (err, rows) => {
+      resolve();
+    });
+  }else{
+    db.query("UPDATE users_locations set did=? where uid=?;", [did, req], (err, rows) => {
+      resolve();
     });
   }
 });
@@ -86,5 +98,7 @@ module.exports = {
   getUser,
   getScore,
   addScore,
+  getDid,
+  setDid,
   getData
 };

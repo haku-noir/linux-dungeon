@@ -42,9 +42,19 @@ function mykeydown(a) {
         px = dx;
         py = dy;
     } else if (data[dy][dx] == 1) {
+<<<<<<< Updated upstream
         request(1, dx, dy);
         px = dx;
         py = dy;
+=======
+        if(window.confirm('部屋に入りますか？')){
+                request(1, dx, dy);
+                 px = dx;
+                 py = dy;
+        }
+        else{   
+        }
+>>>>>>> Stashed changes
     }
     repaint();
 }
@@ -56,7 +66,7 @@ function request(f, x, y){
     form.method = 'post';
     form.action = '/dungeon/room';
 
-    req.type = 'hidden'; //入力フォームが表示されないように
+    req.type = 'hidden'; 
     req.name = 'did';
     req.value = '010101';
 

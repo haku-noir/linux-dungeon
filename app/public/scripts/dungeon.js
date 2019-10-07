@@ -1,4 +1,3 @@
-"use strict";
 var data = [
     [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
     [6, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 6],
@@ -13,11 +12,45 @@ var data = [
 ];
 var gc, px = 12, py = 8;
 
-
 function init() {
     gc = document.getElementById("floor").getContext("2d");
     onkeydown = mykeydown;
-    repaint();
+    var user = document.getElementById("user").value;
+    getUserdata(user)
+        .then((userdata) => {
+            loc = getLoc(userdata.did);
+            px = loc.x;
+            py = loc.y;
+            repaint();
+        });
+}
+
+function getUserdata(user) {
+    return new Promise((resolve) => {
+        var url = "http://localhost/api/userdata?user=" + user;
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', url);
+        xhr.send();
+
+        xhr.onload = function() {
+            var userdata = JSON.parse(xhr.responseText);
+            console.log(userdata);
+            resolve(userdata);
+        }
+    });
+}
+
+function getLoc(did) {
+    var did_s = String(did).match(/.{2}/g);
+    console.log(did_s)
+    var loc = {
+        f: parseInt(did_s[0]),
+        x: parseInt(did_s[1]),
+        y: parseInt(did_s[2])
+    }
+    console.log(loc);
+    return loc;
 }
 
 function up(){ mykeydown({keyCode:38}); }

@@ -7,8 +7,6 @@ CREATE TABLE questions_datas(
     que  VARCHAR(200)
 );
 
-INSERT INTO questions_datas (path, ans, que) values('/test', 'test', 'test');
-
 LOAD DATA LOCAL INFILE "/db/questions_datas.csv"
     INTO TABLE questions_datas
     FIELDS TERMINATED BY ',' ENCLOSED BY '"'

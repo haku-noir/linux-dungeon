@@ -6,4 +6,9 @@ CREATE TABLE dungeon_rooms(
     score INT NOT NULL
 );
 
-INSERT INTO dungeon_rooms (did, qid, score) values('010101', 1, 100);
+LOAD DATA LOCAL INFILE "/db/dungeon_rooms.csv"
+    INTO TABLE dungeon_rooms
+    FIELDS TERMINATED BY ',' ENCLOSED BY '"'
+    LINES TERMINATED BY '\r\n'
+    IGNORE 1 LINES
+    (did, qid, score);

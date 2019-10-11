@@ -6,12 +6,12 @@
   </head>
   <body>
     <div class="root">
-      <br>
+      <% include ./appbar.ejs {user, score} %>
       <h1 align="center">正解</h1>
       <!-- /dungeonにリクエスト -->
       <form action="/dungeon" method="post" autocomplete="off" align="center">
         <input type="submit" class="button" value="部屋を出る">
-        <input type="hidden" name="did" value=<%= did %>>
+        <input type="hidden" name="user" value=<%= user %>>
       </form>
     </div>
   </body>

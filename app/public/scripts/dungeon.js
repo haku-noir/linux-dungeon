@@ -1,4 +1,3 @@
-"use strict";
 var data = [
     [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
     [6, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 1, 0, 6],
@@ -13,11 +12,45 @@ var data = [
 ];
 var gc, px = 12, py = 8;
 
-
 function init() {
     gc = document.getElementById("floor").getContext("2d");
     onkeydown = mykeydown;
-    repaint();
+    var user = document.getElementById("user").value;
+    getUserdata(user)
+        .then((userdata) => {
+            loc = getLoc(userdata.did);
+            px = loc.x;
+            py = loc.y;
+            repaint();
+        });
+}
+
+function getUserdata(user) {
+    return new Promise((resolve) => {
+        var url = "http://localhost/api/userdata?user=" + user;
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', url);
+        xhr.send();
+
+        xhr.onload = function() {
+            var userdata = JSON.parse(xhr.responseText);
+            console.log(userdata);
+            resolve(userdata);
+        }
+    });
+}
+
+function getLoc(did) {
+    var did_s = String(did).match(/.{2}/g);
+    console.log(did_s)
+    var loc = {
+        f: parseInt(did_s[0]),
+        x: parseInt(did_s[1]),
+        y: parseInt(did_s[2])
+    }
+    console.log(loc);
+    return loc;
 }
 
 function up(){ mykeydown({keyCode:38}); }
@@ -38,7 +71,7 @@ function mykeydown(a) {
             break;
     }
 
-    if (data[dy][dx] == 0) { 
+    if (data[dy][dx] == 0) {
         px = dx;
         py = dy;
     } else if (data[dy][dx] == 1) {
@@ -54,6 +87,7 @@ function mykeydown(a) {
 function request(f, x, y){
     var form = document.createElement('form');
     var req = document.createElement('input');
+
     var heya = 0; 
 
     if ( x < 10 && y < 10 ){
@@ -67,12 +101,11 @@ function request(f, x, y){
          heya = `0` + f + x + y;
 
     }
-
-
     console.log(heya);
 
     form.method = 'post';
     form.action = '/dungeon/room';
+    form.id = 'room'
 
     req.type = 'hidden'; 
     req.name = 'did';

@@ -5,5 +5,3 @@ CREATE TABLE users_datas(
     user  VARCHAR(20),
     pass  VARCHAR(20)
 );
-
-INSERT INTO users_datas (user, pass) values('test', 'test');

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../my_modules/db');
 var ud = require('../my_modules/userdata');
+var od = require('../my_modules/overalldata');
 
 router.post('/', function(req, res, next) {
   const user = req.body.user;
@@ -27,6 +28,7 @@ router.post('/answer', function(req, res, next) {
     console.log(rows[0]);
     if(rows[0].ans === ans){
       Promise.resolve()
+        .then(() => od.addAchiever(user, did))
         .then(() => ud.addScore(user, rows[0].score))
         .then(() => ud.getData(user))
         .then((data) => {

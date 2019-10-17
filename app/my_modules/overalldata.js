@@ -1,4 +1,5 @@
 var db = require('./db');
+var ud = require('./userdata');
 
 getScores = () => new Promise((resolve) => {
   db.query("SELECT d.uid, user, score FROM users_scores AS s , users_datas AS d WHERE s.uid=d.uid;", (err, rows) => {
@@ -18,8 +19,24 @@ getDescScores = () => new Promise((resolve) => {
   });
 });
 
+addAchiever = (req, did) => new Promise((resolve) => {
+  if(typeof req == "string"){
+    ud.getUid(req)
+      .then((uid) => {
+        db.query("INSERT INTO achievers_events (uid, did) VALUES( ? , ? );", [uid, did], (err, rows) => {
+          resolve();
+        });
+      });
+  }else{
+    db.query("INSERT INTO achievers_events (uid, did) VALUES( ? , ? );", [req, did], (err, rows) => {
+      resolve();
+    });
+  }
+});
+
 module.exports = {
   getScores,
   getAscScores,
-  getDescScores
+  getDescScores,
+  addAchiever
 };

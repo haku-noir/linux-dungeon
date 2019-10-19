@@ -11,10 +11,22 @@ router.post('/', function(req, res, next) {
   db.query("SELECT d.did, q.path, q.que FROM dungeon_rooms AS d, questions_datas AS q WHERE d.qid=q.qid AND d.did = ?;", did, (err, rows) => {
     Promise.resolve()
       .then(() => ud.setDid(user, did))
-      .then(() => ud.getData(user))
+      .then(() => od.checkAchievedEvent(user, did))
+      .then((achieved) => {
+        if(achieved){
+          throw new Error('Achieved');
+        }else{
+          return ud.getData(user);
+        }
+      })
       .then((data) => {
         console.log(rows[0]);
         res.render('question', {...data, path: rows[0].path, que: rows[0].que});
+      })
+      .catch((err) => {
+        if(err.messege === 'Achieved'){
+          res.render('dungeon', data);
+        }
       });
   });
 });

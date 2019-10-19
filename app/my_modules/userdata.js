@@ -92,7 +92,6 @@ getData = (req) => new Promise((resolve) => {
     });
 });
 
-
 module.exports = {
   getUid,
   getUser,

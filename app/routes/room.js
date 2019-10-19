@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../my_modules/db');
 var ud = require('../my_modules/userdata');
+var od = require('../my_modules/overalldata');
 
 router.post('/', function(req, res, next) {
   const user = req.body.user;
@@ -12,8 +13,14 @@ router.post('/', function(req, res, next) {
       .then(() => ud.setDid(user, did))
       .then(() => ud.getData(user))
       .then((data) => {
-        console.log(rows[0]);
-        res.render('question', {...data, path: rows[0].path, que: rows[0].que});
+        od.checkAchievedEvent(user, did)
+          .then((achieved) => {
+            if(achieved){
+              res.render('achieved-event', data);
+            }else{
+              res.render('question', {...data, path: rows[0].path, que: rows[0].que});
+            }
+          });
       });
   });
 });
@@ -27,6 +34,7 @@ router.post('/answer', function(req, res, next) {
     console.log(rows[0]);
     if(rows[0].ans === ans){
       Promise.resolve()
+        .then(() => od.addAchiever(user, did))
         .then(() => ud.addScore(user, rows[0].score))
         .then(() => ud.getData(user))
         .then((data) => {

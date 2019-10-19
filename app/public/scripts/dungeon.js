@@ -43,13 +43,11 @@ function getUserdata(user) {
 
 function getLoc(did) {
     var did_s = String(did).match(/.{2}/g);
-    console.log(did_s)
     var loc = {
         f: parseInt(did_s[0]),
         x: parseInt(did_s[1]),
         y: parseInt(did_s[2])
     }
-    console.log(loc);
     return loc;
 }
 

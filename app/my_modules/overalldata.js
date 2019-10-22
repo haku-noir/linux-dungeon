@@ -20,18 +20,12 @@ getDescScores = () => new Promise((resolve) => {
 });
 
 addAchiever = (req, did) => new Promise((resolve) => {
-  if(typeof req == "string"){
-    ud.getUid(req)
-      .then((uid) => {
-        db.query("INSERT INTO achievers_events (uid, did) VALUES( ? , ? );", [uid, did], (err, rows) => {
-          resolve();
-        });
+  ud.getUid(req)
+    .then((uid) => {
+      db.query("INSERT INTO achievers_events (uid, did) VALUES( ? , ? );", [uid, did], (err, rows) => {
+        resolve();
       });
-  }else{
-    db.query("INSERT INTO achievers_events (uid, did) VALUES( ? , ? );", [req, did], (err, rows) => {
-      resolve();
     });
-  }
 });
 
 getAchievedEvents = (req) => new Promise((resolve) => {
@@ -49,7 +43,7 @@ getAchievedEvents = (req) => new Promise((resolve) => {
 checkAchievedEvent = (req, did) => new Promise((resolve) => {
   if(typeof req == "string"){
     db.query("SELECT * FROM users_datas AS d, achievers_events AS a WHERE d.uid=a.uid AND d.user=? AND a.did=?;", [req, did], (err, rows) => {
-      if(rows.length){
+      if(rows && rows.length){
         resolve(true);
       }else{
         resolve(false);
@@ -57,7 +51,7 @@ checkAchievedEvent = (req, did) => new Promise((resolve) => {
     });
   }else{
     db.query("SELECT * FROM achievers_events WHERE uid=? AND did=?;", [req, did], (err, rows) => {
-      if(rows.length){
+      if(rows && rows.length){
         resolve(true);
       }else{
         resolve(false);

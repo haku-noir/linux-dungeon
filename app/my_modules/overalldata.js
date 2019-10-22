@@ -62,7 +62,7 @@ checkAchievedEvent = (req, did) => new Promise((resolve) => {
 
 getTreasure = (did) => new Promise((resolve) => {
   db.query("SELECT * FROM dungeon_treasures AS d, treasures_datas AS t WHERE d.tid=t.tid AND d.did=?;", did, (err, rows) => {
-    resolve(rows);
+    resolve(rows[0]);
   });
 });
 

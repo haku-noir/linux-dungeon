@@ -74,38 +74,23 @@ function mykeydown(a) {
         py = dy;
     } else if (data[dy][dx] == 1) {
         if(window.confirm('部屋に入りますか？')){
-                request(1, dx, dy);
-                 px = dx;
-                 py = dy;
+            enterRoom(changeDid(1, dx, dy));
+                px = dx;
+                py = dy;
         }
     }
     repaint();
 }
 
-function request(f, x, y){
+function enterRoom(did){
     var form = document.createElement('form');
     var req = document.createElement('input');
-
-    var heya = 0; 
-
-    if ( x < 10 && y < 10 ){
-         heya = `0` + f + `0` + x + `0` + y;
-    } else if ( x < 10 && y >= 10 ) {
-         heya = `0` + f + `0` + x + y;
-        
-    } else if ( x >= 10 && y < 10){
-         heya = `0` + f + x + `0` + y;
-    } else if ( x >= 10 && y >= 10){
-         heya = `0` + f + x + y;
-
-    }
-    console.log(heya);
 
     form.method = 'post';
     form.action = '/dungeon/room';
     form.id = 'room'
 
-    req.type = 'hidden'; 
+    req.type = 'hidden';
     req.name = 'did';
     req.value = heya;
 
@@ -115,6 +100,19 @@ function request(f, x, y){
     form.submit();
 }
 
+function changeDid(f, x, y){
+    let did;
+    if ( x < 10 && y < 10 ){
+        did = `0` + f + `0` + x + `0` + y;
+    } else if ( x < 10 && y >= 10 ) {
+        did = `0` + f + `0` + x + y;
+    } else if ( x >= 10 && y < 10){
+        did = `0` + f + x + `0` + y;
+    } else if ( x >= 10 && y >= 10){
+        did = `0` + f + x + y;
+    }
+    return did;
+}
 
 function repaint() {
     gc.fillStyle = "black";

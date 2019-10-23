@@ -16,7 +16,9 @@ $(function() {
             type: 'GET',
             dataType: 'json',
             success: function(result) {
-                $('#modal-content').append('<s> uid: ' + result.uid + '　user: ' + result.user + 'score: ' + result.score + '</s>');
+                for (var i = 0; i < 11; i++) {
+                    $('#modal-content').append('<p> uid: ' + result[i].uid + '　user: ' + result[i].user + ' score: ' + result[i].score + '</p>');
+                }
             },
             error: function() { console.log('Miss..'); }
         });

@@ -33,7 +33,7 @@ router.post('/treasure', function(req, res, next) {
     .then(() => od.checkAchievedEvent(user, did))
     .then((achieved) => {
       if(achieved){
-        res.json();
+        res.json({});
       }else{
         Promise.resolve()
           .then(() => od.addAchiever(user, did))

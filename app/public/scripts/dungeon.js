@@ -7,7 +7,7 @@ var data = [
     [6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 6],
     [6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 6],
     [6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 6],
-    [6, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 6],
+    [6, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 6],
     [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
 ];
 var gc, px = 12, py = 8;
@@ -78,6 +78,13 @@ function mykeydown(a) {
                 px = dx;
                 py = dy;
         }
+    } else if (data[dy][dx] == 2) {
+        getTreasure(changeDid(1, dx, dy))
+            .then((treasure) => {
+                console.log(treasure);
+            });
+        px = dx;
+        py = dy;
     }
     repaint();
 }
@@ -92,12 +99,34 @@ function enterRoom(did){
 
     req.type = 'hidden';
     req.name = 'did';
-    req.value = heya;
+    req.value = did;
 
     form.appendChild(req);
     document.body.appendChild(form);
 
     form.submit();
+}
+
+function getTreasure(did) {
+    return new Promise((resolve) => {
+        var url = "http://localhost/api/treasure";
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', url);
+        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+        const datas = `user=${document.getElementById("user").value}&did=${did}`;
+        console.log(datas);
+        xhr.send(datas);
+
+        xhr.onload = function() {
+            var treasure = JSON.parse(xhr.responseText);
+            if(treasure.name || treasure.val){
+                resolve(treasure);
+            }else{
+                resolve();
+            }
+        }
+    });
 }
 
 function changeDid(f, x, y){

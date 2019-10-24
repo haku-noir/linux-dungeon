@@ -16,32 +16,32 @@ $(function() {
             type: 'GET',
             dataType: 'json',
             success: function(result) {
-                for (var i = 0; i < 11; i++) {
-                    $('#modal-content').append('<p> uid: ' + result[i].uid + '　user: ' + result[i].user + ' score: ' + result[i].score + '</p>');
+                let value = " <h1>スコア</h1>";
+                for (let i = 0; i < 11; i++) {
+                    value += `<p>${(i + 1)} 位 user: ${result[i].user} score: ${result[i].score }</p>`;
+                    $('#modal-content').html(value);
                 }
+
             },
             error: function() { console.log('Miss..'); }
         });
 
         $('#modal-content').fadeIn('slow');
 
-
-    });
-
-
-    $('#modal-overlay,#modal-close').unbind().click(function() {
-        $('#modal-content,#modal-overlay').fadeOut('slow', function() {
-            $('#modal-overlay').remove();
+        $('#modal-overlay,#modal-close').unbind().click(function() {
+            $('#modal-content,#modal-overlay').fadeOut('slow', function() {
+                $('#modal-overlay').remove();
+            });
         });
+
+        $(window).resize(centeringModalSyncer);
+
+        function centeringModalSyncer() {
+            var w = $(window).width();
+            var h = $(window).height();
+            var cw = $('#modal-content').outerWidth();
+            var ch = $('#modal-content').outerHeight();
+            $('#modal-content').css({ 'left': ((w - cw) / 2) + 'px', 'top': ((h - ch) / 2) + 'px' });
+        }
     });
-
-    $(window).resize(centeringModalSyncer);
-
-    function centeringModalSyncer() {
-        var w = $(window).width();
-        var h = $(window).height();
-        var cw = $('#modal-content').outerWidth();
-        var ch = $('#modal-content').outerHeight();
-        $('#modal-content').css({ 'left': ((w - cw) / 2) + 'px', 'top': ((h - ch) / 2) + 'px' });
-    }
 });

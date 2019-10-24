@@ -128,6 +128,7 @@ function mykeydown(a) {
                     }
                 })
                 .done((treasures) => {
+                    treasurelist = treasures;
                     value = "";
                     $.each(treasures, function(index, treasure) {
                         value += `<button id="modal-open-treasure" class="button" value="${index}">${treasure.name}</button>`

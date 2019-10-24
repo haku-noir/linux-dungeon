@@ -1,5 +1,6 @@
+var treasurelist;
+
 $(function(){
-  var treasurelist;
   $.ajax({
     url:'/api/treasurelist',
     type:'GET',
@@ -28,7 +29,7 @@ $(function(){
 
     $("#modal-content-treasure").html(`
       <p>${treasurelist[parseInt($(this).val())].val}<p>
-  `);
+    `);
     $("#modal-content-treasure").fadeIn("slow");
 
     $("#modal-overlay-treasure,#modal-close-treasure").unbind().click(function(){

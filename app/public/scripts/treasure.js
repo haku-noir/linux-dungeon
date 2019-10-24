@@ -19,7 +19,7 @@ $(function(){
   });
 
   $(document).on("click", "#modal-open-treasure", function(){
-    console.log($(this).val());
+    stop = true;
     $(this).blur();
     $("body").append('<div id="modal-overlay-treasure"></div>');
     $("#modal-overlay-treasure").fadeIn("slow");
@@ -34,6 +34,7 @@ $(function(){
     $("#modal-overlay-treasure,#modal-close-treasure").unbind().click(function(){
       $("#modal-content-treasure,#modal-overlay-treasure").fadeOut("slow", function(){
         $('#modal-overlay-treasure').remove();
+        stop = false;
       });
     });
   });

@@ -11,6 +11,7 @@ var data = [
     [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
 ];
 var gc, px = 12, py = 8;
+var stop = false;
 
 function init() {
     gc = document.getElementById("floor").getContext("2d");
@@ -57,6 +58,8 @@ function left(){ mykeydown({keyCode:37}); }
 function right(){ mykeydown({keyCode:39}); }
 
 function mykeydown(a) {
+    if(stop) return;
+
     var dx = px, dy = py;
     switch (a.keyCode) {
         case 37: dx--;
@@ -81,7 +84,7 @@ function mykeydown(a) {
     } else if (data[dy][dx] == 2) {
         getTreasure(changeDid(1, dx, dy))
             .then((treasure) => {
-                console.log(treasure);
+                stop = true;
                 $("body").append('<div id="modal-overlay-treasure-get"></div>');
                 $("#modal-overlay-treasure-get").fadeIn("slow");
 
@@ -105,6 +108,7 @@ function mykeydown(a) {
                 $("#modal-overlay-treasure-get,#modal-close-treasure-get").unbind().click(function(){
                     $("#modal-content-treasure-get,#modal-overlay-treasure-get").fadeOut("slow", function(){
                         $('#modal-overlay-treasure-get').remove();
+                        stop = false;
                     });
                 });
                 $(window).resize(centeringModalSyncerTreasure);

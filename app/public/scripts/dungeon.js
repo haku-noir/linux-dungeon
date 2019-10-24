@@ -23,6 +23,7 @@ var data = [
     [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,],
 ];
 var gc, px, py;
+var stop = false;
 
 function init() {
     gc = document.getElementById("floor").getContext("2d");
@@ -69,6 +70,8 @@ function left(){ mykeydown({keyCode:37}); }
 function right(){ mykeydown({keyCode:39}); }
 
 function mykeydown(a) {
+    if(stop) return;
+
     var dx = px, dy = py;
     switch (a.keyCode) {
         case 37: dx--;
@@ -86,45 +89,82 @@ function mykeydown(a) {
         py = dy;
     } if (data[dy][dx] == 1) {
         if(window.confirm('部屋に入りますか？')){
-                request(1, dx, dy);
-                 px = dx;
-                 py = dy;
+            enterRoom(changeDid(1, dx, dy));
+                px = dx;
+                py = dy;
         }
-    }　if (data[dy][dx] == 2){
-                 px = dx;
-                 py = dy;
-    
-    
-}
-repaint();
+    } else if (data[dy][dx] == 2) {
+        getTreasure(changeDid(1, dx, dy))
+            .then((treasure) => {
+                stop = true;
+                $("body").append('<div id="modal-overlay-treasure-get"></div>');
+                $("#modal-overlay-treasure-get").fadeIn("slow");
+
+                centeringModalSyncerTreasure();
+
+                if(treasure){
+                    $("#modal-content-treasure-get").html(`
+                        <div align="center">
+                            <p>${treasure.val}<p>
+                        </div>
+                    `);
+                }else{
+                    $("#modal-content-treasure-get").html(`
+                        <div align="center">
+                            <p>空っぽ<p>
+                        </div>
+                    `);
+                }
+                $("#modal-content-treasure-get").fadeIn("slow");
+
+                $("#modal-overlay-treasure-get,#modal-close-treasure-get").unbind().click(function(){
+                    $("#modal-content-treasure-get,#modal-overlay-treasure-get").fadeOut("slow", function(){
+                        $('#modal-overlay-treasure-get').remove();
+                        stop = false;
+                    });
+                });
+                $(window).resize(centeringModalSyncerTreasure);
+                function centeringModalSyncerTreasure(){
+                    var w = $(window).width();
+                    var h = $(window).height();
+                    var cw = $("#modal-content-treasure-get").outerWidth();
+                    var ch = $("#modal-content-treasure-get").outerHeight();
+                    $("#modal-content-treasure-get").css({"left": ((w - cw)/2) + "px","top": ((h - ch)/2) + "px"});
+                }
+
+                $.ajax({
+                    url:'/api/treasurelist',
+                    type:'GET',
+                    data:{
+                        'user':$('#user').val()
+                    }
+                })
+                .done((treasures) => {
+                    treasurelist = treasures;
+                    value = "";
+                    $.each(treasures, function(index, treasure) {
+                        value += `<button id="modal-open-treasure" class="button" value="${index}">${treasure.name}</button>`
+                    });
+                    $('#treasure-box').html(value);
+                });
+            });
+        px = dx;
+        py = dy;
+    }
+    repaint();
 }
 
-function request(f, x, y){
+function enterRoom(did){
     var form = document.createElement('form');
     var req = document.createElement('input');
-
-    var heya = 0; 
-
-    if ( x < 10 && y < 10 ){
-         heya = `0` + f + `0` + x + `0` + y;
-    } else if ( x < 10 && y >= 10 ) {
-         heya = `0` + f + `0` + x + y;
-        
-    } else if ( x >= 10 && y < 10){
-         heya = `0` + f + x + `0` + y;
-    } else if ( x >= 10 && y >= 10){
-         heya = `0` + f + x + y;
-
-    }
-    console.log(heya);
 
     form.method = 'post';
     form.action = '/dungeon/room';
     form.id = 'room'
 
-    req.type = 'hidden'; 
+    req.type = 'hidden';
     req.name = 'did';
-    req.value = heya;
+    req.value = did;
 
     form.appendChild(req);
     document.body.appendChild(form);
@@ -132,6 +172,41 @@ function request(f, x, y){
     form.submit();
 }
 
+function getTreasure(did) {
+    return new Promise((resolve) => {
+        var url = "http://localhost/api/treasure";
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', url);
+        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+        const datas = `user=${document.getElementById("user").value}&did=${did}`;
+        console.log(datas);
+        xhr.send(datas);
+
+        xhr.onload = function() {
+            var treasure = JSON.parse(xhr.responseText);
+            if(treasure.name || treasure.val){
+                resolve(treasure);
+            }else{
+                resolve();
+            }
+        }
+    });
+}
+
+function changeDid(f, x, y){
+    let did;
+    if ( x < 10 && y < 10 ){
+        did = `0` + f + `0` + x + `0` + y;
+    } else if ( x < 10 && y >= 10 ) {
+        did = `0` + f + `0` + x + y;
+    } else if ( x >= 10 && y < 10){
+        did = `0` + f + x + `0` + y;
+    } else if ( x >= 10 && y >= 10){
+        did = `0` + f + x + y;
+    }
+    return did;
+}
 
 function repaint() {
     gc.fillStyle = "black";

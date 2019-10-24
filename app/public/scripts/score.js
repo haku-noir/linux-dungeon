@@ -1,12 +1,10 @@
-$(function() {
-    $('#modal-open').click(function() {
-        console.log('aaa');
-
+$(function(){
+    $("#modal-open").click( function(){
+        stop = true;
         $(this).blur();
-        if ($('#modal-overlay')[0]) returnfalse;
-        $('body').append('<div id="modal-overlay"></div>');
-        $('#modal-overlay').fadeIn('slow');
-
+        if($("#modal-overlay")[0])returnfalse;
+        $("body").append('<div id="modal-overlay"></div>');
+        $("#modal-overlay").fadeIn("slow");
 
         centeringModalSyncer();
 
@@ -31,6 +29,7 @@ $(function() {
         $('#modal-overlay,#modal-close').unbind().click(function() {
             $('#modal-content,#modal-overlay').fadeOut('slow', function() {
                 $('#modal-overlay').remove();
+                stop = false;
             });
         });
 

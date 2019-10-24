@@ -9,10 +9,14 @@
     <div class="root">
       <% include ./appbar.ejs {user, score} %>
       <input id="user" type="hidden" name="user" value="<%= user %>" form="room">
-      <canvas id="floor" width="1000" height="500"></canvas>
+      <canvas id="floor" width="1100" height="440"></canvas>
       <img id="kabe" src="/images/kabe.png" style="display:none" />
       <img id="monn" src="/images/monn.png" style="display:none" />
       <img id="yuusya" src="/images/yuusya.png" style="display:none" />
+      <img id="tra" src="/images/tra.png" style="display:none" />
+      <img id="sea" src="/images/sea2..png" style="display:none" />
+      <img id="sea2" src="/images/sea2..png" style="display:none" />
+      <img id="ita" src="/images/ita.png" style="display:none" />
       <table style="display:none">
         <tr><td></td><td><button onclick="up()">U</button></td><td></td></tr>
         <tr><td><button onclick="left()">L</button></td><td></td>

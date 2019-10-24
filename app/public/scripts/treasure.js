@@ -8,19 +8,19 @@ $(function(){
     }
   })
   .done((treasures) => {
-    console.log(data);
     treasurelist = treasures;
     $.each(treasurelist, function(index, treasure) {
-      $('#treasure-box').append(`
-        <button id="modal-open-treasure" class="button" value="${index}">${treasure.name}</button>
-      `);
+      value = "";
+      $.each(treasures, function(index, treasure) {
+          value += `<button id="modal-open-treasure" class="button" value="${index}">${treasure.name}</button>`
+      });
+      $('#treasure-box').html(value);
     });
   });
 
   $(document).on("click", "#modal-open-treasure", function(){
     console.log($(this).val());
     $(this).blur();
-    if($("#modal-overlay-treasure")[0])returnfalse;
     $("body").append('<div id="modal-overlay-treasure"></div>');
     $("#modal-overlay-treasure").fadeIn("slow");
 
@@ -28,8 +28,6 @@ $(function(){
 
     $("#modal-content-treasure").html(`
       <p>${treasurelist[parseInt($(this).val())].val}<p>
-      <br>
-      <button id="modal-close-treasure" class="button">閉じる</button>
   `);
     $("#modal-content-treasure").fadeIn("slow");
 

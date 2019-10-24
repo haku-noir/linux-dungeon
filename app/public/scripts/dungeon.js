@@ -82,6 +82,54 @@ function mykeydown(a) {
         getTreasure(changeDid(1, dx, dy))
             .then((treasure) => {
                 console.log(treasure);
+                $("body").append('<div id="modal-overlay-treasure-get"></div>');
+                $("#modal-overlay-treasure-get").fadeIn("slow");
+
+                centeringModalSyncerTreasure();
+
+                if(treasure){
+                    $("#modal-content-treasure-get").html(`
+                        <div align="center">
+                            <p>${treasure.val}<p>
+                        </div>
+                    `);
+                }else{
+                    $("#modal-content-treasure-get").html(`
+                        <div align="center">
+                            <p>空っぽ<p>
+                        </div>
+                    `);
+                }
+                $("#modal-content-treasure-get").fadeIn("slow");
+
+                $("#modal-overlay-treasure-get,#modal-close-treasure-get").unbind().click(function(){
+                    $("#modal-content-treasure-get,#modal-overlay-treasure-get").fadeOut("slow", function(){
+                        $('#modal-overlay-treasure-get').remove();
+                    });
+                });
+                $(window).resize(centeringModalSyncerTreasure);
+                function centeringModalSyncerTreasure(){
+                    var w = $(window).width();
+                    var h = $(window).height();
+                    var cw = $("#modal-content-treasure-get").outerWidth();
+                    var ch = $("#modal-content-treasure-get").outerHeight();
+                    $("#modal-content-treasure-get").css({"left": ((w - cw)/2) + "px","top": ((h - ch)/2) + "px"});
+                }
+
+                $.ajax({
+                    url:'/api/treasurelist',
+                    type:'GET',
+                    data:{
+                        'user':$('#user').val()
+                    }
+                })
+                .done((treasures) => {
+                    value = "";
+                    $.each(treasures, function(index, treasure) {
+                        value += `<button id="modal-open-treasure" class="button" value="${index}">${treasure.name}</button>`
+                    });
+                    $('#treasure-box').html(value);
+                });
             });
         px = dx;
         py = dy;

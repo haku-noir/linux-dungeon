@@ -12,8 +12,9 @@
       <form action="/dungeon/room" method="post" align="center">
         <input type="submit" class="button" value="問題に戻る">
         <input type="hidden" name="did" value=<%= did %>>
-        <input type="hidden" name="user" value=<%= user %>>
+        <input id="user" type="hidden" name="user" value=<%= user %>>
       </form>
+      <% include ./treasure-box.ejs %>
     </div>
   </body>
 </html>

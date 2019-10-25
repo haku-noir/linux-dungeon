@@ -2,7 +2,7 @@ USE linuxdungeon;
 
 CREATE TABLE treasures_datas(
   tid INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  name  VARCHAR(5),
+  name  VARCHAR(10),
   title TEXT,
   val  TEXT
 );

@@ -14,12 +14,16 @@ $(function(){
             type: 'GET',
             dataType: 'json',
             success: function(result) {
-                let value = " <h1>スコア</h1>";
+                let value = "<h1>スコア</h1><table><th>順位</th> <th> user </th> <th> score </th>";
                 for (let i = 0; i < 11; i++) {
-                    value += `<p>${(i + 1)} 位 user: ${result[i].user} score: ${result[i].score }</p>`;
+                    value += `                    
+                    <tr>
+                        <td>${i + 1} </td>
+                        <td>${result[i].user}</td>
+                        <td> ${result[i].score }</td>
+                    </tr>`;
                     $('#modal-content').html(value);
                 }
-
             },
             error: function() { console.log('Miss..'); }
         });

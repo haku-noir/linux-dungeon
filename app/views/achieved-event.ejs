@@ -11,8 +11,9 @@
       <!-- /dungeonにリクエスト -->
       <form action="/dungeon" method="post" autocomplete="off" align="center">
         <input type="submit" class="button" value="部屋を出る">
-        <input type="hidden" name="user" value=<%= user %>>
+        <input id="user" type="hidden" name="user" value=<%= user %>>
       </form>
+      <% include ./treasure-box.ejs %>
     </div>
   </body>
 </html>

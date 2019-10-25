@@ -9,6 +9,8 @@ $(function(){
     }
   })
   .done((treasures) => {
+    console.log("treasures");
+    console.log(treasures);
     treasurelist = treasures;
     $.each(treasurelist, function(index, treasure) {
       value = "";
@@ -18,6 +20,7 @@ $(function(){
       $('#treasure-box').html(value);
     });
   });
+  console.log("treasures");
 
   $(document).on("click", "#modal-open-treasure", function(){
     stop = true;

@@ -15,11 +15,12 @@ router.post('/', function(req, res, next) {
     } else if (req.body.registration) {
         db.query("SELECT user FROM users_datas where user=?; ", [user], (error, result) => {
             if (result[0]) {
-                res.redirect('login/registration');
+                let em = "user exists";
+                res.render('registration', { em });
                 console.log('ユーザは既に存在します。存在するユーザ' + user);
             } else {
                 db.query("INSERT INTO users_datas (user,pass) VALUES( ? , ? );", [user, pass], (error, result) => {
-                    console.log(result);　
+                    console.log(result);
                     res.render('start', { user });
                 })
             }
@@ -32,7 +33,8 @@ router.post('/', function(req, res, next) {
                 console.log('成功したユーザ名 :' + user + '成功したパスワード :' + pass)
                 res.render('start', { user });
             } else {
-                res.redirect('login');
+                let em1 = "username or password is wrong";
+                res.render('login', { em1 });
                 console.log('ログイン失敗、、');
                 console.log('失敗したユーザ名 :' + user + '失敗したパスワード :' + pass)
             }

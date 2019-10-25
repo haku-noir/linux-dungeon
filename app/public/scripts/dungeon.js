@@ -105,13 +105,14 @@ function mykeydown(a) {
                 if(treasure){
                     $("#modal-content-treasure-get").html(`
                         <div align="center">
-                            <p>${treasure.val}<p>
+                            <h2>${treasure.title}</h2>
+                            <p>${treasure.val}</p>
                         </div>
                     `);
                 }else{
                     $("#modal-content-treasure-get").html(`
                         <div align="center">
-                            <p>空っぽ<p>
+                            <h2>空っぽ</h2>
                         </div>
                     `);
                 }

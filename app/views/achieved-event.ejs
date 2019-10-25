@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Linux Dungeon</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/achieved.css">
+  </head>
+  <body>
+    <div class="root">
+      <% include ./appbar.ejs {user, score} %>
+      <h1 align="center">探索済</h1>
+      <!-- /dungeonにリクエスト -->
+      <form action="/dungeon" method="post" autocomplete="off" align="center">
+        <input type="submit" class="button" value="部屋を出る">
+        <input type="hidden" name="user" value=<%= user %>>
+      </form>
+    </div>
+  </body>
+</html>

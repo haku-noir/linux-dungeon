@@ -96,6 +96,7 @@ function mykeydown(a) {
     } else if (data[dy][dx] == 2) {
         getTreasure(changeDid(1, dx, dy))
             .then((treasure) => {
+                console.log(treasure);
                 stop = true;
                 $("body").append('<div id="modal-overlay-treasure-get"></div>');
                 $("#modal-overlay-treasure-get").fadeIn("slow");

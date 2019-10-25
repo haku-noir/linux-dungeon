@@ -23,7 +23,7 @@ var data = [
     [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,],
 ];
 var gc, px, py;
-const r = 2;
+const r = 4;
 
 function init() {
     gc = document.getElementById("floor").getContext("2d");

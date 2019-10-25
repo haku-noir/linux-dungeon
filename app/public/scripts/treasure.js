@@ -25,8 +25,6 @@ $(function(){
     $("body").append('<div id="modal-overlay-treasure"></div>');
     $("#modal-overlay-treasure").fadeIn("slow");
 
-    centeringModalSyncerTreasure();
-
     $("#modal-content-treasure").html(`
       <h2>${treasurelist[parseInt($(this).val())].title}</h2>
       <p>${treasurelist[parseInt($(this).val())].val}</p>
@@ -40,13 +38,4 @@ $(function(){
       });
     });
   });
-
-  $(window).resize(centeringModalSyncerTreasure);
-  function centeringModalSyncerTreasure(){
-    var w = $(window).width();
-    var h = $(window).height();
-    var cw = $("#modal-content-treasure").outerWidth();
-    var ch = $("#modal-content-treasure").outerHeight();
-    $("#modal-content-treasure").css({"left": ((w - cw)/2) + "px","top": ((h - ch)/2) + "px"});
-  }
 });

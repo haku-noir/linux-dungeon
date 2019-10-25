@@ -145,7 +145,7 @@ function repaint() {
         for (var x = 0 ; x < data[y].length ; x++) {
             if (x <= px+r && x >= px-r && y <= py+r && y >= py-r){
                 if (data[y][x] == 6) {
-                    gc.drawImage(kabe, x * 20, y * 20, 20, 20);
+                    gc.drawImage(yuka, x * 20, y * 20, 20, 20);
                 }else if (data[y][x] == 1) {
                     gc.drawImage(monn, x*20, y*20, 20, 20);
                 } else if (data[y][x] == 2){
@@ -154,6 +154,8 @@ function repaint() {
                     gc.drawImage(sea, x*20, y*20, 20, 20);
                 } else if (data[y][x] == 5){
                     gc.drawImage(sea2, x*20, y*20, 20, 20);
+                } else if (data[y][x] == 0) {
+                    gc.drawImage(kabe, x*20, y*20, 20, 20);
                 }
             }
        }

@@ -68,11 +68,11 @@ getTreasure = (did) => new Promise((resolve) => {
 
 getTreasureList = (req) => new Promise((resolve) => {
   if(typeof req == "string"){
-    db.query("SELECT name, val FROM dungeon_treasures AS d JOIN achievers_events AS a JOIN treasures_datas AS t JOIN users_datas AS u ON d.did=a.did AND d.tid=t.tid AND a.uid=u.uid AND user=?;", req, (err, rows) => {
+    db.query("SELECT * FROM dungeon_treasures AS d JOIN achievers_events AS a JOIN treasures_datas AS t JOIN users_datas AS u ON d.did=a.did AND d.tid=t.tid AND a.uid=u.uid AND user=?;", req, (err, rows) => {
       resolve(rows);
     });
   }else{
-    db.query("SELECT name, val FROM dungeon_treasures AS d JOIN achievers_events AS a JOIN treasures_datas AS t ON d.did=a.did AND d.tid=t.tid AND uid=?;", req, (err, rows) => {
+    db.query("SELECT * FROM dungeon_treasures AS d JOIN achievers_events AS a JOIN treasures_datas AS t ON d.did=a.did AND d.tid=t.tid AND uid=?;", req, (err, rows) => {
       resolve(rows);
     });
   }

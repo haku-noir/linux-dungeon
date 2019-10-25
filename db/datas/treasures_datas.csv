@@ -1,2 +1,2 @@
-name,val
-cd,Change Directory<br>ディレクトリを変更するコマンド
+name,title,val
+cd,ディレクトリの移動,Change Directory<br>ディレクトリを変更するコマンド

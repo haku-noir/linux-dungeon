@@ -13,7 +13,7 @@ $(function(){
     $.each(treasurelist, function(index, treasure) {
       value = "";
       $.each(treasures, function(index, treasure) {
-          value += `<button id="modal-open-treasure" class="button" value="${index}">${treasure.name}</button>`
+        value += `<button id="modal-open-treasure" class="button" value="${index}">${treasure.name}</button>`
       });
       $('#treasure-box').html(value);
     });
@@ -28,7 +28,8 @@ $(function(){
     centeringModalSyncerTreasure();
 
     $("#modal-content-treasure").html(`
-      <p>${treasurelist[parseInt($(this).val())].val}<p>
+      <h2>${treasurelist[parseInt($(this).val())].title}</h2>
+      <p>${treasurelist[parseInt($(this).val())].val}</p>
     `);
     $("#modal-content-treasure").fadeIn("slow");
 

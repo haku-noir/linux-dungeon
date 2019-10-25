@@ -8,4 +8,4 @@ CREATE TABLE users_locations(
 CREATE TRIGGER location_trigger
     AFTER INSERT
     ON users_datas FOR EACH ROW
-    INSERT INTO users_locations (did) VALUE ('011208');
+    INSERT INTO users_locations (did) VALUE ('010205');

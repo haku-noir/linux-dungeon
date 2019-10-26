@@ -8,8 +8,8 @@
   <body>
     <div class="root">
       <% include ./appbar.ejs {user} %>
-      <h1 align="center">QUESTION</h1>
-      <p align="center"><%= path %></p>
+      <h1 align="center"><%= stage %></h1>
+      <% console.log(que); %>
       <p align="center"><%= que %></p>
       <!-- /dungeon/room/answerにリクエスト -->
       <form action="/dungeon/room/answer" method="post" autocomplete="off">

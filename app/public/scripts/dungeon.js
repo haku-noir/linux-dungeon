@@ -201,8 +201,6 @@ function changeDid(f, x, y){
 }
 
 function repaint() {
-    gc.fillStyle = "black";
-    gc.fillRect(0, 0, 1100, 440);
     for (var y = 0 ; y < data.length ; y++) {
         for (var x = 0 ; x < data[y].length ; x++) {
             if (x <= px+r && x >= px-r && y <= py+r && y >= py-r){

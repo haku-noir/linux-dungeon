@@ -11,7 +11,7 @@ $(function(){
             type: 'GET',
             dataType: 'json',
             success: function(result) {
-                let value = "<h1>スコア</h1><table><th>順位</th> <th> user </th> <th> score </th>";
+                let value = "<h1>スコア</h1><table><th>順位</th> <th> USER </th> <th> SCORE </th>";
                 for (let i = 0; i < 11; i++) {
                     value += `
                     <tr>
@@ -27,11 +27,15 @@ $(function(){
 
         $('#modal-content').fadeIn('slow');
 
-        $('#modal-overlay,#modal-close').unbind().click(function() {
+        $('#modal-overlay').unbind().click(function() {
             $('#modal-content,#modal-overlay').fadeOut('slow', function() {
                 $('#modal-overlay').remove();
                 stop = false;
             });
+        });
+
+        $(document).on("keydown", "", function(){
+            $("#modal-overlay").trigger("click");
         });
     });
 });

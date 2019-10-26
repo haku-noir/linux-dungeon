@@ -1,10 +1,22 @@
+body {
+background-image: url("/images/dungeon.png");
+background-size: cover;
+background-repeat: no-repeat;
+}
+
 .root {
-  margin-top: 50px;
-  padding-bottom: 10px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 1000px;
-  margin: 0 auto;
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+margin: auto;
+width: 1100px;
+height: 550px;
+}
+
+.text {
+color: #fff;
 }
 
 .buttons {
@@ -25,19 +37,6 @@
 .button:hover {
   opacity: 0.75;
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2); /*影を小さく*/
-}
-
-.text_box {
-  border:0;
-  padding:10px;
-  font-size:1em;
-  font-family:Arial, sans-serif;
-  border:solid 1px #ccc;
-  margin:0 0 10px;
-  width:300px;
-  -moz-box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);
-  -webkit-box-shadow: inset 1px 4px 9px -6px rgba(0, 0, 0, 0.5);
-  box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);
 }
 
 #modal-content-treasure-get {

@@ -7,17 +7,18 @@
   <body>
     <div class="root">
       <br>
-      <h1 align="center">Linux Dungeon</h1>
-      <h2 align="center">USER: <%= user %></h2>
-      <!-- /loginにリダイレクト -->
-      <form action="/login" method="get" autocomplete="off" align="center">
-        <input type="submit" class="button" value="ユーザ切り替え">
-      </form>
+      <h1 id="title" class="text" align="center">Linux Dungeon</h1>
+      <h2 id="user_name" class="text" align="center">USER: <%= user %></h2>
       <!-- /dungeonにリクエスト -->
       <form action="/dungeon" method="post" autocomplete="off" align="center">
-        <input type="submit" class="button" value="探索開始">
+        <input type="submit" class="button" value="START">
         <input type="hidden" name="user" value=<%= user %>>
       </form>
+      <!-- /loginにリダイレクト -->
+      <form action="/login" method="get" autocomplete="off" align="center">
+        <input type="submit" class="button" value="LOGIN">
+      </form>
     </div>
+    <h2 id="source" class="text" align="center">(c)白螺子屋 http://hi79.web.fc2.com/</h2>
   </body>
 </html>

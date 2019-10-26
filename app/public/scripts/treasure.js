@@ -15,7 +15,7 @@ $(function(){
     $.each(treasurelist, function(index, treasure) {
       value = "";
       $.each(treasures, function(index, treasure) {
-        value += `<button id="modal-open-treasure" class="button" value="${index}">${treasure.name}</button>`
+        value += `<button id="modal-open-treasure" class="treasure" value="${index}">${treasure.name}</button>`
       });
       $('#treasure-box').html(value);
     });
@@ -30,15 +30,19 @@ $(function(){
 
     $("#modal-content-treasure").html(`
       <h2>${treasurelist[parseInt($(this).val())].title}</h2>
-      <p>${treasurelist[parseInt($(this).val())].val}</p>
+      ${treasurelist[parseInt($(this).val())].val}
     `);
     $("#modal-content-treasure").fadeIn("slow");
 
-    $("#modal-overlay-treasure,#modal-close-treasure").unbind().click(function(){
+    $("#modal-overlay-treasure").unbind().click(function(){
       $("#modal-content-treasure,#modal-overlay-treasure").fadeOut("slow", function(){
         $('#modal-overlay-treasure').remove();
         stop = false;
       });
+    });
+
+    $(document).on("keydown", "", function(){
+      $("#modal-overlay-treasure").trigger("click");
     });
   });
 });

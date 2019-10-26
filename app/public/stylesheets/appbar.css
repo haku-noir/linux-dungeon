@@ -23,7 +23,7 @@
 	background-color: rgba( 0,0,0, 0.75 ) ;
 }
 
-.button-link:hover {
-	cursor: pointer ;
-	color: #f00 ;
+.bar_values {
+  display: flex;
+  justify-content: space-between;
 }

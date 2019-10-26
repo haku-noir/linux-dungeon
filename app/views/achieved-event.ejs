@@ -2,18 +2,18 @@
   <head>
     <meta charset="utf-8">
     <title>Linux Dungeon</title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/achieved.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/room.css">
   </head>
   <body>
     <div class="root">
       <% include ./appbar.ejs {user, score} %>
-      <h1 align="center">探索済</h1>
+      <h1 class="text" align="center">探索済</h1>
+      <br>
       <!-- /dungeonにリクエスト -->
       <form action="/dungeon" method="post" autocomplete="off" align="center">
         <input type="submit" class="button" value="部屋を出る">
         <input id="user" type="hidden" name="user" value=<%= user %>>
       </form>
-      <% include ./treasure-box.ejs %>
     </div>
   </body>
 </html>

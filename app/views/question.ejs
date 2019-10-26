@@ -3,14 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>Linux Dungeon</title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/question.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/room.css">
   </head>
   <body>
     <div class="root">
-      <% include ./appbar.ejs {user} %>
-      <h1 align="center"><%= stage %></h1>
-      <% console.log(que); %>
-      <p align="center"><%= que %></p>
+      <% include ./appbar.ejs {user, score} %>
+      <h1 class="text" align="center"><%= stage %></h1>
+      <div id="question">
+        <p class="text" align="center"><%= que %></p>
+      </div>>
       <!-- /dungeon/room/answerにリクエスト -->
       <form action="/dungeon/room/answer" method="post" autocomplete="off">
         <!-- 枠線なしの表で縦横を揃える -->

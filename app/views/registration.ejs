@@ -8,11 +8,11 @@
   <body>
     <div class="root">
       <br>
-      <h1 align="center">REGISTRATION</h1>
+      <h1 id="title" class="text" align="center">REGISTRATION</h1>
       <%var em%>
       <%if (em == undefined) {
         let em ;}%>
-      <h2 align="center"><%=em%></h2>
+      <h2 class="text" align="center"><%=em%></h2>
       <!-- /にリクエスト -->
       <form action="/" method="post" autocomplete="off">
         <!-- 枠線なしの表で縦横を揃える -->
@@ -35,8 +35,8 @@
                 <!-- 下にある#returnのformの送信ボタン -->
                 <input type="submit" class="button" value="戻る" form="return">
                 <div>
-                  <!-- 押されるとリクエストが行われる送信ボタン -->
-                  <input type="submit" class="button" value="登録">
+                <!-- 押されるとリクエストが行われる送信ボタン -->
+                <input type="submit" class="button" value="登録">
                 </div>
               </div>
             </td>
@@ -46,7 +46,8 @@
         <input type="hidden" name="registration" value="true">
       </form>
       <!-- /loginにリダイレクト -->
-      <form action="/login" method="get" id="return"></form>
+      <form action="/" method="get" id="return"></form>
     </div>
+    <h2 id="source" class="text" align="center">(c)白螺子屋 http://hi79.web.fc2.com/</h2>
   </body>
 </html>

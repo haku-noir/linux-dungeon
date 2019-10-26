@@ -135,7 +135,7 @@ function mykeydown(a) {
                     treasurelist = treasures;
                     value = "";
                     $.each(treasures, function(index, treasure) {
-                        value += `<button id="modal-open-treasure" class="button" value="${index}">${treasure.name}</button>`
+                        value += `<button id="modal-open-treasure" class="treasure" value="${index}">${treasure.name}</button>`
                     });
                     $('#treasure-box').html(value);
                 });

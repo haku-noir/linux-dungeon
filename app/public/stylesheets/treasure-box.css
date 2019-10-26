@@ -23,7 +23,18 @@
 	background-color: rgba( 0,0,0, 0.75 ) ;
 }
 
-.button-link:hover {
-	cursor: pointer ;
-	color: #f00 ;
+.treasure {
+  display: inline-block;
+  padding: 0.5em 1em;
+  margin: 0.5em 0.5em;
+  font-size: 0.8em;
+  text-decoration: none;
+  background: #d87d66;
+  color: white;
+  border-bottom: solid 4px #db9a89;
+  border-radius: 3px;
+}
+.treasure:hover {
+  opacity: 0.75;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2); /*影を小さく*/
 }

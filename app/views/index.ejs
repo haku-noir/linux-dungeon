@@ -7,14 +7,14 @@
   <body>
     <div class="root">
       <br>
-      <h1 align="center">Linux Dungeon</h1>
+      <h1 id="title" class="text" align="center">Linux Dungeon</h1>
       <!-- /loginにリダイレクト -->
       <form action="/login" method="get" autocomplete="off" align="center">
-        <input type="submit" class="button" value="ログイン">
+        <input type="submit" class="button" value="LOGIN">
       </form>
-      <!-- /dungeonにリクエスト -->
-      <form action="/dungeon" method="post" autocomplete="off" align="center">
-        <input type="submit" class="button" value="探索開始">
+      <!-- /login/registrationにリダイレクト -->
+      <form action="/login/registration" method="get" align="center">
+        <input type="submit" class="button" value="REGISTRATION">
       </form>
     </div>
   </body>

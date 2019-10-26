@@ -10,11 +10,11 @@
 <body>
     <div class="root">
         <br>
-        <h1 align="center">LOGIN</h1>
-         <%var em1%>
-      <%if (em1 == undefined) {
+        <h1 id="title" class="text" align="center">LOGIN</h1>
+        <%var em1%>
+        <%if (em1 == undefined) {
         let em1;}%>
-         <h2 align="center"><%=em1%></h2>
+         <h2 class="text" align="center"><%=em1%></h2>
         <!-- /にリクエスト -->
         <form action="/" method="post" autocomplete="off">
             <!-- 枠線なしの表で縦横を揃える -->
@@ -44,6 +44,6 @@
         <!-- /login/registrationにリダイレクト -->
         <form action="/login/registration" method="get" id="registration"></form>
     </div>
+    <h2 id="source" class="text" align="center">(c)白螺子屋 http://hi79.web.fc2.com/</h2>
 </body>
-
 </html>

@@ -8,7 +8,7 @@ router.post('/', function(req, res, next) {
   const user = req.body.user;
   const did = req.body.did;
 
-  db.query("SELECT d.did, q.path, q.que FROM dungeon_rooms AS d, questions_datas AS q WHERE d.qid=q.qid AND d.did = ?;", did, (err, rows) => {
+  db.query("SELECT d.did, q.stage, q.que FROM dungeon_rooms AS d, questions_datas AS q WHERE d.qid=q.qid AND d.did = ?;", did, (err, rows) => {
     Promise.resolve()
       .then(() => ud.setDid(user, did))
       .then(() => ud.getData(user))
@@ -18,7 +18,7 @@ router.post('/', function(req, res, next) {
             if(achieved){
               res.render('achieved-event', data);
             }else{
-              res.render('question', {...data, path: rows[0].path, que: rows[0].que});
+              res.render('question', {...data, stage: rows[0].stage, que: rows[0].que});
             }
           });
       });

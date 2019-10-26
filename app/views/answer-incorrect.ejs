@@ -2,19 +2,19 @@
   <head>
     <meta charset="utf-8">
     <title>Linux Dungeon</title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/answer.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/room.css">
   </head>
   <body>
     <div class="root">
       <% include ./appbar.ejs {user, score} %>
-      <h1 align="center">不正解</h1>
+      <h1 class="text" align="center">不正解</h1>
+      <br>
       <!-- /dungeon/roomにリクエスト -->
       <form action="/dungeon/room" method="post" align="center">
         <input type="submit" class="button" value="問題に戻る">
         <input type="hidden" name="did" value=<%= did %>>
         <input id="user" type="hidden" name="user" value=<%= user %>>
       </form>
-      <% include ./treasure-box.ejs %>
     </div>
   </body>
 </html>

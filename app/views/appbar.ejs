@@ -2,17 +2,29 @@
 <link rel="stylesheet" type="text/css" href="/stylesheets/appbar.css">
 <script type="text/javascript" src="/scripts/score.js"></script>
 
-<div align="center">
-  <h2>USER: <%= user %>  SCORE: <%= score %></h2>
-  <!-- /にリクエスト -->
-  <form action="/" method="post" align="center">
-    <input type="submit" class="button" value="脱出">
-    <input type="hidden" name="exit" value="true">
-    <input type="hidden" name="user" value=<%= user %>>
-  </form>
-  <button id="modal-open" class="button">スコア一覧</button>
-  <div id="modal-content">
-    <h1>スコア</h1>
-    <button id="modal-close" class="button">閉じる</button>
+<div class="text" align="center">
+  <div class="bar_values">
+    <table border="0">
+      <tr><td align="right"><h1 class="text">USER: </h1></td><td align="right"><h1 class="text"><%= user %></h1></td></tr>
+      <tr><td align="right"><h1 class="text">SCORE: </h1></td><td align="right"><h1 class="text"><%= score %></h1></td></tr>
+    </table>
+    <table border="0">
+      <tr>
+        <td>
+          <!-- /にリクエスト -->
+          <form action="/" method="post" align="center">
+            <input type="submit" class="button" value="脱出">
+            <input type="hidden" name="exit" value="true">
+            <input type="hidden" name="user" value=<%= user %>>
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button id="modal-open" class="button">スコア一覧</button>
+        </td>
+      </tr>
+    </table>
   </div>
+  <div id="modal-content"></div>
 </div>

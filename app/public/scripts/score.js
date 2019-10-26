@@ -11,7 +11,7 @@ $(function(){
             type: 'GET',
             dataType: 'json',
             success: function(result) {
-                let value = "<h1>スコア</h1><table><th>順位</th> <th> user </th> <th> score </th>";
+                let value = "<h1>スコア</h1><table><th>順位</th> <th> USER </th> <th> SCORE </th>";
                 for (let i = 0; i < 11; i++) {
                     value += `
                     <tr>

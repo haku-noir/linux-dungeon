@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Linux Dungeon</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/dungeon.css">
+    <script type="text/javascript" src="/scripts/dungeon.js"></script>
+  </head>
+  <body onload="init()">
+    <div class="root">
+      <% include ./appbar.ejs {user, score} %>
+      <input id="user" type="hidden" name="user" value="<%= user %>" form="room">
+      <canvas id="floor" width="1100" height="440"></canvas>
+      <img id="kabe" src="/images/kabe.png" style="display:none" />
+      <img id="monn" src="/images/monn.png" style="display:none" />
+      <img id="yuusya" src="/images/yuusya.png" style="display:none" />
+      <img id="tra" src="/images/tra.png" style="display:none" />
+      <img id="sea" src="/images/sea2..png" style="display:none" />
+      <img id="sea2" src="/images/sea2..png" style="display:none" />
+      <img id="ita" src="/images/ita.png" style="display:none" />
+      <img id="yuka" src="/images/yuka.png" style="display:none" />
+      <div id="modal-content-treasure-get"></div>
+      <% include ./treasure-box.ejs %>
+    </div>
+  </body>
+</html>

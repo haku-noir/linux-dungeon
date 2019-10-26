@@ -30,7 +30,7 @@ $(function(){
 
     $("#modal-content-treasure").html(`
       <h2>${treasurelist[parseInt($(this).val())].title}</h2>
-      <p>${treasurelist[parseInt($(this).val())].val}</p>
+      ${treasurelist[parseInt($(this).val())].val}
     `);
     $("#modal-content-treasure").fadeIn("slow");
 

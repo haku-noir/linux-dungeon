@@ -105,7 +105,7 @@ function mykeydown(a) {
                     $("#modal-content-treasure-get").html(`
                         <div align="center">
                             <h2>${treasure.title}</h2>
-                            <p>${treasure.val}</p>
+                            ${treasure.val}
                         </div>
                     `);
                 }else{

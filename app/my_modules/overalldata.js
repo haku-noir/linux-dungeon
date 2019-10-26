@@ -19,6 +19,22 @@ getDescScores = () => new Promise((resolve) => {
   });
 });
 
+getQuestion = (did) => new Promise((resolve) => {
+  db.query("SELECT d.did, q.stage, q.que FROM dungeon_rooms AS d, questions_datas AS q WHERE d.qid=q.qid AND d.did = ?;", did, (err, rows) => {
+    resolve(rows[0]);
+  });
+});
+
+checkAnswer = (did, ans) => new Promise((resolve) => {
+  db.query("SELECT q.ans, d.score FROM dungeon_rooms AS d, questions_datas AS q WHERE d.qid=q.qid AND d.did = ?;", did, (err, rows) => {
+    if(rows[0].ans === ans){
+      resolve(rows[0].score);
+    }else{
+      resolve(0);
+    }
+  });
+});
+
 addAchiever = (req, did) => new Promise((resolve) => {
   ud.getUid(req)
     .then((uid) => {
@@ -82,6 +98,8 @@ module.exports = {
   getScores,
   getAscScores,
   getDescScores,
+  getQuestion,
+  checkAnswer,
   addAchiever,
   getAchievedEvents,
   checkAchievedEvent,

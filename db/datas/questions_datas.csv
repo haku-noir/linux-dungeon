@@ -8,4 +8,4 @@ path,answer,que
 /floor3/room1,Wonderful!!,room1には普段の方法では見つけることができない隠されたファイルがある。それを見つけ出し、中にある文字列を答えよう！
 /floor3/room2,16.exe,room2には100個のファイルがある。その内の99個は拡張子が.txtだが、一つは.shである。このshファイルを見つけ出そう！
 /floor3/room3,12,room3にあるno_ocean.txtというファイルの内容を、重複行を取り除いた状態に編集し、最も多く登場した文字の行数を数えてみよう！
-/floor4/Last_dungeon,broken_watch,ls
+/floor4/Last_dungeon,broken_watch,Final_dungeonと実行し、魔女を追え

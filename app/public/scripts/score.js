@@ -27,11 +27,15 @@ $(function(){
 
         $('#modal-content').fadeIn('slow');
 
-        $('#modal-overlay,#modal-close').unbind().click(function() {
+        $('#modal-overlay').unbind().click(function() {
             $('#modal-content,#modal-overlay').fadeOut('slow', function() {
                 $('#modal-overlay').remove();
                 stop = false;
             });
+        });
+
+        $(document).on("keydown", "", function(){
+            $("#modal-overlay").trigger("click");
         });
     });
 });

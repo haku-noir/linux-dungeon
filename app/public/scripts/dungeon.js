@@ -117,12 +117,16 @@ function mykeydown(a) {
                 }
                 $("#modal-content-treasure-get").fadeIn("slow");
 
-                $("#modal-overlay-treasure-get,#modal-close-treasure-get").unbind().click(function(){
+                $("#modal-overlay-treasure-get").unbind().click(function(){
                     $("#modal-content-treasure-get,#modal-overlay-treasure-get").fadeOut("slow", function(){
                         $('#modal-overlay-treasure-get').remove();
                         stop = false;
                     });
                 });
+
+                $(document).on("keydown", "", function(){
+                    $("#modal-overlay-treasure-get").trigger("click");
+                  });
 
                 $.ajax({
                     url:'/api/treasurelist',

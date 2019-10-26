@@ -34,11 +34,15 @@ $(function(){
     `);
     $("#modal-content-treasure").fadeIn("slow");
 
-    $("#modal-overlay-treasure,#modal-close-treasure").unbind().click(function(){
+    $("#modal-overlay-treasure").unbind().click(function(){
       $("#modal-content-treasure,#modal-overlay-treasure").fadeOut("slow", function(){
         $('#modal-overlay-treasure').remove();
         stop = false;
       });
+    });
+
+    $(document).on("keydown", "", function(){
+      $("#modal-overlay-treasure").trigger("click");
     });
   });
 });

@@ -17,7 +17,7 @@ $(function() {
             dataType: 'json',
             success: function(result) {
                 let value = "<h1>スコア</h1><table><th>順位</th> <th> user </th> <th> score </th>";
-                for (let i = 0; i < 11; i++) {
+                for (let i = 0; i < result.length; i++) {
                     value += `                    
                     <tr>
                         <td>${i + 1} </td>

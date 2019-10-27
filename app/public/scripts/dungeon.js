@@ -124,9 +124,17 @@ function mykeydown(a) {
                     });
                 });
 
+                var close = false;
+                $(document).on("keyup", "", function(){
+                    close = true;
+                });
+
                 $(document).on("keydown", "", function(){
-                    $("#modal-overlay-treasure-get").trigger("click");
-                  });
+                    if(close){
+                        $("#modal-overlay-treasure-get").trigger("click");
+                    }
+                    close = false;
+                });
 
                 $.ajax({
                     url:'/api/treasurelist',

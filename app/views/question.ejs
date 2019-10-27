@@ -3,15 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Linux Dungeon</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/stylesheets/room.css">
+    <script type="text/javascript" src="/scripts/question.js"></script>
   </head>
   <body>
     <div class="root">
       <% include ./appbar.ejs {user, score} %>
-      <h1 class="text" align="center"><%= stage %></h1>
-      <div id="question">
-        <p class="text" align="center"><%= que %></p>
-      </div>>
+      <div id="question"></div>
       <!-- /dungeon/room/answerにリクエスト -->
       <form action="/dungeon/room/answer" method="post" autocomplete="off">
         <!-- 枠線なしの表で縦横を揃える -->
@@ -34,7 +33,7 @@
             </td>
           </tr>
         </table>
-        <input type="hidden" name="did" value=<%= did %>>
+        <input id="did" type="hidden" name="did" value=<%= did %>>
       </form>
       <!-- /dungeonにリクエスト -->
       <form action="/dungeon" method="post" id="return" autocomplete="off" align="center">

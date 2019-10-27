@@ -10,6 +10,13 @@ router.get('/userdata', function(req, res, next) {
     });
 });
 
+router.get('/question', function(req, res, next) {
+  od.getQuestion(req.query.did)
+    .then((question) => {
+      res.json(question);
+    });
+});
+
 router.get('/score', function(req, res, next) {
   od.getDescScores()
     .then((datas) => {

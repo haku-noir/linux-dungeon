@@ -20,8 +20,15 @@ color: #fff;
 }
 
 #question {
-  width: 500px;
+  width: 600px;
+  padding: 20px;
   margin: 0 auto;
+}
+
+#question-statement {
+  font-size: 1.2em;
+  line-height: 1.7em;
+  align-self: "left";
 }
 
 .buttons {

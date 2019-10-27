@@ -41,17 +41,17 @@ function init() {
 
 function getUserdata(user) {
     return new Promise((resolve) => {
-        var url = "http://localhost/api/userdata?user=" + user;
-        var xhr = new XMLHttpRequest();
-
-        xhr.open('GET', url);
-        xhr.send();
-
-        xhr.onload = function() {
-            var userdata = JSON.parse(xhr.responseText);
+        $.ajax({
+            url:'/api/userdata',
+            type:'GET',
+            data:{
+                user
+            }
+        })
+        .done((userdata) => {
             console.log(userdata);
             resolve(userdata);
-        }
+        });
     });
 }
 
@@ -170,23 +170,22 @@ function enterRoom(did){
 
 function getTreasure(did) {
     return new Promise((resolve) => {
-        var url = "http://localhost/api/treasure";
-        var xhr = new XMLHttpRequest();
-
-        xhr.open('POST', url);
-        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-        const datas = `user=${document.getElementById("user").value}&did=${did}`;
-        console.log(datas);
-        xhr.send(datas);
-
-        xhr.onload = function() {
-            var treasure = JSON.parse(xhr.responseText);
+        $.ajax({
+            url:'/api/treasure',
+            type:'POST',
+            data:{
+                user: $("#user").val(),
+                did
+            }
+        })
+        .done((treasure) => {
             if(treasure.name || treasure.val){
+                console.log(treasure)
                 resolve(treasure);
             }else{
                 resolve();
             }
-        }
+        });
     });
 }
 

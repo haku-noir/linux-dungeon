@@ -17,17 +17,25 @@ $(function() {
             dataType: 'json',
             success: function(result) {
                 let value = "<h1>スコア</h1><table><th>順位</th> <th> user </th> <th> score </th>";
+                let top = {
+                    score: 1000000000000000000,
+                    rank: 1
+                };
+
                 for (let i = 0; i < result.length; i++) {
-                    value += `                    
-                    <tr>
-                        <td>${i + 1} </td>
-                        <td>${result[i].user}</td>
-                        <td> ${result[i].score }</td>
-                    </tr>`;
+                    if(top.score > result[i].score){
+                        top.score = result[i].score;
+                        top.rank = i + 1;
+                    }
+                    value += `
+                        <tr>
+                            <td>${top.rank}</td>
+                            <td>${result[i].user}</td>
+                            <td>${result[i].score }</td>
+                        </tr>`;
                     $('#modal-content').html(value);
                 }
-            },
-            error: function() { console.log('Miss..'); }
+            }
         });
 
         $('#modal-content').fadeIn('slow');

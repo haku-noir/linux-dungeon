@@ -1,41 +1,59 @@
-$(function(){
-    $("#modal-open").click( function(){
-        stop = true;
+$(function() {
+    $('#modal-open').click(function() {
+        console.log('aaa');
+
         $(this).blur();
-        if($("#modal-overlay")[0])returnfalse;
-        $("body").append('<div id="modal-overlay"></div>');
-        $("#modal-overlay").fadeIn("slow");
+        if ($('#modal-overlay')[0]) returnfalse;
+        $('body').append('<div id="modal-overlay"></div>');
+        $('#modal-overlay').fadeIn('slow');
+
+
+        centeringModalSyncer();
+
 
         $.ajax({
             url: 'http://localhost/api/score',
             type: 'GET',
             dataType: 'json',
             success: function(result) {
-                let value = "<h1>スコア</h1><table><th>順位</th> <th> USER </th> <th> SCORE </th>";
-                for (let i = 0; i < 11; i++) {
+                let value = "<h1>スコア</h1><table><th>順位</th> <th> user </th> <th> score </th>";
+                let top = {
+                    score: 1000000000000000000,
+                    rank: 1
+                };
+
+                for (let i = 0; i < result.length; i++) {
+                    if(top.score > result[i].score){
+                        top.score = result[i].score;
+                        top.rank = i + 1;
+                    }
                     value += `
-                    <tr>
-                        <td>${i + 1} </td>
-                        <td>${result[i].user}</td>
-                        <td> ${result[i].score }</td>
-                    </tr>`;
+                        <tr>
+                            <td>${top.rank}</td>
+                            <td>${result[i].user}</td>
+                            <td>${result[i].score }</td>
+                        </tr>`;
                     $('#modal-content').html(value);
                 }
-            },
-            error: function() { console.log('Miss..'); }
+            }
         });
 
         $('#modal-content').fadeIn('slow');
 
-        $('#modal-overlay').unbind().click(function() {
+        $('#modal-overlay,#modal-close').unbind().click(function() {
             $('#modal-content,#modal-overlay').fadeOut('slow', function() {
                 $('#modal-overlay').remove();
-                stop = false;
             });
         });
 
-        $(document).on("keydown", "", function(){
-            $("#modal-overlay").trigger("click");
-        });
+        $(window).resize(centeringModalSyncer);
+
+        function centeringModalSyncer() {
+            var w = $(window).width();
+            var h = $(window).height();
+            var cw = $('#modal-content').outerWidth();
+            var ch = $('#modal-content').outerHeight();
+            $('#modal-content').css({ 'left': ((w - cw) / 2) + 'px', 'top': ((h - ch) / 2) + 'px' });
+        }
     });
 });

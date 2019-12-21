@@ -4,7 +4,7 @@ services:
     image: node:10
     container_name: linux-dungeon_app
     ports:
-      - "0.0.0.0:80:80"
+      - "80:80"
     volumes:
       - ./app:/app
     working_dir: /app
@@ -26,3 +26,8 @@ services:
     environment:
       - "MYSQL_ROOT_PASSWORD=password"
       - "MYSQL_DATABASE=linuxdungeon"
+  ssh:
+    build: ./ssh
+    container_name: linux-dungeon_ssh
+    ports:
+      - "22:22"

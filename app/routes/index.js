@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+node_ssh = require('node-ssh');
 var db = require('../my_modules/db');
 
 router.get('/', function(req, res, next) {
@@ -26,6 +27,14 @@ router.post('/', function(req, res, next) {
                 } else {
                     db.query("INSERT INTO users_datas (user,pass) VALUES( ? , ? );", [user, pass], (error, result) => {
                         console.log(result);
+                        ssh = new node_ssh();
+                        ssh.connect({
+                            host: process.env.SSH_HOST || 'localhost',
+                            username: 'root',
+                            password: 'password',
+                        })
+                            .then(() => ssh.execCommand('pwd', {options: {pty: true}}))
+                            .then((result) => console.log(result.stdout));
                         res.render('start', { user });
                     })
                 }
